@@ -52,7 +52,8 @@ class AuthController(
             headers.set("X-Access-Token", token)
             ResponseEntity.ok().headers(headers).body(UserLoginResponse(queriedUser.get(), null))
         } catch (e: Exception) {
-            ResponseEntity.ok(UserLoginResponse(null, ErrorContent("User Login Error", e.message)))
+            ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(UserLoginResponse(null, ErrorContent("User Login Error", e.message)))
         }
     }
 
