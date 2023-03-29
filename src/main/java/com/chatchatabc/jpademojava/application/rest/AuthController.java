@@ -3,6 +3,8 @@ package com.chatchatabc.jpademojava.application.rest;
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
 import com.chatchatabc.jpademojava.application.dto.user.UserLoginRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserLoginResponse;
+import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
+import com.chatchatabc.jpademojava.application.dto.user.UserRegisterResponse;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.JwtService;
@@ -67,4 +69,32 @@ public class AuthController {
                     .body(new UserLoginResponse(null, new ErrorContent("User Login Error", e.getMessage())));
         }
     }
+
+    /**
+     * User Registration
+     *
+     * @param request
+     * @return
+     */
+    @PostMapping("/register")
+    public ResponseEntity<UserRegisterResponse> register(
+            @RequestBody UserRegisterRequest request
+    ) {
+        try {
+            User newUser = userService.register(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(new UserRegisterResponse(newUser, null));
+        } catch (Exception e) {
+            // TODO: Catch appropriate exception message
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new UserRegisterResponse(null, new ErrorContent("User Register Error", e.getMessage())));
+        }
+    }
+
+    /**
+     * TODO: Check if username is available
+     */
+
+    /**
+     * TODO: Check if email is available
+     */
 }
