@@ -12,3 +12,8 @@ data class UserProfileUpdateRequest(
     val email: String?,
     val username: String?,
 )
+
+data class UserPasswordUpdateRequest(
+    val oldPassword: String,
+    val newPassword: String
+)
