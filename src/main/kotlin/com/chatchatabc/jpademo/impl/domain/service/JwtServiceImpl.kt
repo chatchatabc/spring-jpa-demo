@@ -7,7 +7,7 @@ import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.service.JwtService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-import java.util.Date
+import java.util.*
 
 @Service
 class JwtServiceImpl(

@@ -9,6 +9,7 @@ import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.JwtService
 import com.chatchatabc.jpademo.domain.service.UserService
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -64,7 +65,7 @@ class AuthController(
     ): ResponseEntity<UserRegisterResponse> {
         return try {
             val newUser = userService.register(userRegisterRequest)
-            return ResponseEntity.ok(UserRegisterResponse(newUser, null))
+            return ResponseEntity.status(HttpStatus.CREATED).body(UserRegisterResponse(newUser, null))
         } catch (e: Exception) {
             // TODO: Catch appropriate exception message
             ResponseEntity.badRequest()
