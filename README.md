@@ -25,6 +25,14 @@
 - List of compatible databases
 - Pageable for Pagination
 - Transactions
+- Migrations
+  - Auto
+  - Manual
+- Important of DTOs
+  - Mapping
+- Other methods
+  - Rest
+  - GraphQL
 
 ## TODO
 
@@ -39,7 +47,7 @@
     - [ ] View Profile (`/api/user/profile/me`)
     - [ ] View Profile of other user (`/api/user/profile/view/{username}`)
     - [ ] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
-    - [ ] Change Password (`/api/user/profile/change-password`)
+    - [ ] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
 - [ ] Post
     - [ ] Create
     - [ ] View
@@ -54,8 +62,8 @@
     - [x] Login (`/api/auth/register`)
     - [x] View Profile (`/api/user/profile/me`)
     - [x] View Profile of other user (`/api/user/profile/view/{username}`)
-    - [ ] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
-    - [ ] Change Password (`/api/user/profile/change-password`)
+    - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
+    - [ ] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
 - [ ] Post
     - [ ] Create
     - [ ] View
