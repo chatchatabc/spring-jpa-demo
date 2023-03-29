@@ -40,7 +40,7 @@
 
 - [ ] User
     - [x] Registration (`/api/auth/register`)
-    - [ ] Login (`/api/auth/register`)
+    - [x] Login (`/api/auth/register`)
     - [ ] View Profile (`/api/user/profile/me`)
     - [ ] Update Profile (`/api/user/profile/update`)
     - [ ] Change Password (`/api/user/profile/change-password`)
