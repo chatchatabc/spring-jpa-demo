@@ -32,8 +32,11 @@ class SecurityConfig(
                 // Allow access to /api/auth
                 it.requestMatchers("/api/auth/**").permitAll()
 
+                // Authenticated access to user routes
+                it.requestMatchers("/api/user/**").authenticated()
+
                 // TODO: Add more security rules
-                it.anyRequest().permitAll()
+                it.anyRequest().authenticated()
             }
             .sessionManagement { session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
