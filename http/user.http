@@ -1,0 +1,3 @@
+### Get User Profile
+GET {{address}}/api/user/profile
+Authorization: Bearer {{token}}
