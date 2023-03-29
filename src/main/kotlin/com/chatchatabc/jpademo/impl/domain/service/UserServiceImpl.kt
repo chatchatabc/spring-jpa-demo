@@ -1,5 +1,6 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
+import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.UserRepository
@@ -25,6 +26,26 @@ class UserServiceImpl(
         val newUser = mapper.map(user, User::class.java)
         newUser.password = passwordEncoder.encode(user.password)
         return userRepository.save(newUser)
+    }
+
+    /**
+     * Update User Profile
+     */
+    override fun update(userId: String, user: UserProfileUpdateRequest): User {
+        val queriedUser = userRepository.findById(userId)
+        if (queriedUser.isEmpty) {
+            throw Exception("User not found")
+        }
+
+        // Apply update
+        queriedUser.get().apply {
+            // Update email if not null
+            email = user.email ?: email
+            // Update username if not null
+            username = user.username ?: username
+        }
+        return userRepository.save(queriedUser.get())
+
     }
 
     /**
