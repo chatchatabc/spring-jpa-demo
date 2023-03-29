@@ -7,3 +7,8 @@ data class UserProfileResponse(
     val user: User?,
     val error: ErrorContent?
 )
+
+data class UserProfileUpdateRequest(
+    val email: String?,
+    val username: String?,
+)
