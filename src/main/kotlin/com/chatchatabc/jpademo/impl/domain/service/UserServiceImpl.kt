@@ -1,5 +1,6 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
+import com.chatchatabc.jpademo.application.dto.user.UserPasswordUpdateRequest
 import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.domain.model.User
@@ -9,6 +10,7 @@ import org.modelmapper.ModelMapper
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
@@ -31,6 +33,7 @@ class UserServiceImpl(
     /**
      * Update User Profile
      */
+    @Transactional
     override fun update(userId: String, user: UserProfileUpdateRequest): User {
         val queriedUser = userRepository.findById(userId)
         if (queriedUser.isEmpty) {
@@ -46,6 +49,26 @@ class UserServiceImpl(
         }
         return userRepository.save(queriedUser.get())
 
+    }
+
+    /**
+     * Update User Password
+     */
+    @Transactional
+    override fun updatePassword(userId: String, request: UserPasswordUpdateRequest): User {
+        val user = userRepository.findById(userId)
+        if (user.isEmpty) {
+            throw Exception("User not found")
+        }
+        // Compare old password with current password
+        if (!passwordEncoder.matches(request.oldPassword, user.get().password)) {
+            throw Exception("Old password is incorrect")
+        }
+        // Update password
+        user.get().apply {
+            password = passwordEncoder.encode(request.newPassword)
+        }
+        return userRepository.save(user.get())
     }
 
     /**
