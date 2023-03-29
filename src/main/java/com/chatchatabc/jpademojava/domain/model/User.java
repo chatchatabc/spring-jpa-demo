@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.Instant;
 import java.util.Collection;
+import java.util.Collections;
 
 @Data
 @Entity
@@ -41,7 +42,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Create empty collection of authorities
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
