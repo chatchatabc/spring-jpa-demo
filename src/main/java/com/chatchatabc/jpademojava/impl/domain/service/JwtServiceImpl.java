@@ -12,14 +12,22 @@ import java.util.Date;
 
 @Service
 public class JwtServiceImpl implements JwtService {
-    @Value("${jwt.secret}")
     private String secret;
-
-    @Value("${jwt.expiration}")
     private String expiration;
+    private Algorithm hmac512;
+    private JWTVerifier verifier;
 
-    private Algorithm hmac512 = Algorithm.HMAC512(secret);
-    private JWTVerifier verifier = JWT.require(hmac512).build();
+
+    public JwtServiceImpl(
+            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.expiration}") String expiration
+    ) {
+        this.secret = secret;
+        this.expiration = expiration;
+        hmac512 = Algorithm.HMAC512(secret);
+        verifier = JWT.require(hmac512).build();
+    }
+
 
     /**
      * Generate JWT token
