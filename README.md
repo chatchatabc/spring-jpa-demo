@@ -15,6 +15,16 @@
 - Explain Services
 - Create User Examples
 - Create Post Examples
+- One-to-One Relationship
+- One-to-Many Relationship
+- Many-to-Many Relationship
+- Many-to-One Relationship
+- Application Properties
+  - Database
+  - Hibernate
+- List of compatible databases
+- Pageable for Pagination
+- Transactions
 
 ## TODO
 
@@ -27,7 +37,8 @@
     - [ ] Registration (`/api/auth/register`)
     - [ ] Login (`/api/auth/register`)
     - [ ] View Profile (`/api/user/profile/me`)
-    - [ ] Update Profile (`/api/user/profile/update`)
+    - [ ] View Profile of other user (`/api/user/profile/view/{username}`)
+    - [ ] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [ ] Change Password (`/api/user/profile/change-password`)
 - [ ] Post
     - [ ] Create
@@ -42,7 +53,8 @@
     - [x] Registration (`/api/auth/register`)
     - [x] Login (`/api/auth/register`)
     - [x] View Profile (`/api/user/profile/me`)
-    - [ ] Update Profile (`/api/user/profile/update`)
+    - [x] View Profile of other user (`/api/user/profile/view/{username}`)
+    - [ ] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [ ] Change Password (`/api/user/profile/change-password`)
 - [ ] Post
     - [ ] Create
