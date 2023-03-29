@@ -13,5 +13,5 @@ interface JwtService {
     /**
      * Validate JWT Token and get ID
      */
-    fun validateTokenAndGetIds(token: String): String;
+    fun validateTokenAndGetId(token: String): String;
 }

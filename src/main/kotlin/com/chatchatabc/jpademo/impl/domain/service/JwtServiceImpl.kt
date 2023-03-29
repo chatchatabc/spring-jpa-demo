@@ -34,7 +34,7 @@ class JwtServiceImpl(
     /**
      * Validate JWT Token and get ID
      */
-    override fun validateTokenAndGetIds(token: String): String {
+    override fun validateTokenAndGetId(token: String): String {
         return try {
             this.verifier.verify(token).subject
         } catch (e: Exception) {
