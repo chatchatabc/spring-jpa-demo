@@ -1,6 +1,7 @@
 package com.chatchatabc.jpademo.application.rest
 
 import com.chatchatabc.jpademo.application.dto.ErrorContent
+import com.chatchatabc.jpademo.application.dto.user.UserPasswordUpdateRequest
 import com.chatchatabc.jpademo.application.dto.user.UserProfileResponse
 import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademo.domain.model.User
@@ -8,7 +9,6 @@ import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -53,7 +53,6 @@ class UserController(
     /**
      * Update User Profile
      */
-    @Transactional
     @PutMapping("/profile/update")
     fun updateProfile(
         @RequestBody user: UserProfileUpdateRequest
@@ -69,6 +68,20 @@ class UserController(
     }
 
     /**
-     * TODO: Update User Password
+     * Update User Password
      */
+    @PutMapping("/profile/change-password")
+    fun updatePassword(
+        @RequestBody request: UserPasswordUpdateRequest
+    ): ResponseEntity<UserProfileResponse> {
+        return try {
+            // Get id from security context
+            val principal = SecurityContextHolder.getContext().authentication.principal as User
+            val user = userService.updatePassword(principal.id, request)
+            ResponseEntity.ok(UserProfileResponse(user, null))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest()
+                .body(UserProfileResponse(null, ErrorContent("User Change Password Error", e.message)))
+        }
+    }
 }

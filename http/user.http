@@ -13,6 +13,16 @@ Content-Type: application/json
 
 {
     "email": "test@gmail.com",
-    "username": "test1"
+    "username": "test"
+}
+
+### Update User Password
+PUT {{address}}/api/user/profile/change-password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "oldPassword": "1234",
+    "newPassword": "123"
 }
 
