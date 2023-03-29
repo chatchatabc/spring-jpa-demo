@@ -1,3 +1,8 @@
 ### Get User Profile
 GET {{address}}/api/user/profile
 Authorization: Bearer {{token}}
+
+### Get Profile of other User
+GET {{address}}/api/user/profile/view/test
+Authorization: Bearer {{token}}
+
