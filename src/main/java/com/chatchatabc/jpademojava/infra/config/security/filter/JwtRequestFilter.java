@@ -27,7 +27,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // Get authorization header and validate
         String header = request.getHeader("Authorization");
 
-        // TODO: Implement logidc
+        // TODO: Implement logic
 
         // TODO: Continue flow with authenticated user
         filterChain.doFilter(request, response);
