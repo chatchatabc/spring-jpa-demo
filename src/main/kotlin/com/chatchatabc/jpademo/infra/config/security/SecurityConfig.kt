@@ -29,6 +29,9 @@ class SecurityConfig(
         return http
             .cors().and().csrf().disable()
             .authorizeHttpRequests {
+                // Allow access to /api/auth
+                it.requestMatchers("/api/auth/**").permitAll()
+
                 // TODO: Add more security rules
                 it.anyRequest().permitAll()
             }
