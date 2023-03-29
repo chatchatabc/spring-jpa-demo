@@ -39,8 +39,16 @@ open class User : UserDetails {
         return this.password
     }
 
+    fun setPassword(password: String) {
+        this.password = password
+    }
+
     override fun getUsername(): String {
         return this.username
+    }
+
+    fun setUsername(username: String) {
+        this.username = username
     }
 
     override fun isAccountNonExpired(): Boolean {
