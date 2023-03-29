@@ -6,3 +6,13 @@ Authorization: Bearer {{token}}
 GET {{address}}/api/user/profile/view/test
 Authorization: Bearer {{token}}
 
+### Update User Profile
+PUT {{address}}/api/user/profile/update
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "username": "test1"
+}
+
