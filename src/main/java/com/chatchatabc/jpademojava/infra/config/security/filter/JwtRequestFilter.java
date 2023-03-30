@@ -1,8 +1,8 @@
 package com.chatchatabc.jpademojava.infra.config.security.filter;
 
+import com.chatchatabc.jpademojava.application.rest.jwt.JwtService;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
-import com.chatchatabc.jpademojava.application.rest.jwt.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -2,11 +2,11 @@ package com.chatchatabc.jpademojava.application.rest;
 
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
 import com.chatchatabc.jpademojava.application.dto.country.*;
+import com.chatchatabc.jpademojava.domain.model.Country;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.CountryService;
-import com.chatchatabc.jpademojava.domain.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
