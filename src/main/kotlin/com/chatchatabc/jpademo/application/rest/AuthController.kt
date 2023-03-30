@@ -6,7 +6,7 @@ import com.chatchatabc.jpademo.application.dto.user.UserLoginResponse
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterResponse
 import com.chatchatabc.jpademo.domain.repository.UserRepository
-import com.chatchatabc.jpademo.domain.service.JwtService
+import com.chatchatabc.jpademo.application.rest.jwt.JwtService
 import com.chatchatabc.jpademo.domain.service.UserService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
