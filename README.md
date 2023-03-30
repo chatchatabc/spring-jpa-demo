@@ -65,70 +65,70 @@
 
 ### User
 
-- [x] Registration (`/api/auth/register`)
+- Registration (`/api/auth/register`)
     - [x] Kotlin
     - [x] Java
-- [x] Login (`/api/auth/register`)
+- Login (`/api/auth/register`)
     - [x] Kotlin
     - [x] Java
-- [x] View Profile (`/api/user/profile`)
+- View Profile (`/api/user/profile`)
     - [x] Kotlin
     - [x] Java
-- [x] View Profile of other user (`/api/user/profile/view/{username}`)
+- View Profile of other user (`/api/user/profile/view/{username}`)
     - [x] Kotlin
     - [x] Java
-- [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
+- Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [x] Kotlin
     - [x] Java
-- [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
+- Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
     - [x] Kotlin
     - [x] Java
 
 ### Post (Many-to-One)
 
-- [ ] Create
+- Create
     - [ ] Kotlin
     - [ ] Java
-- [ ] View
+- View
     - [ ] Kotlin
     - [ ] Java
-- [ ] Update
+- Update
     - [ ] Kotlin
     - [ ] Java
-- [ ] Delete
+- Delete
     - [ ] Kotlin
     - [ ] Java
 
 ### Roles (Many-to-Many)
 
-- [ ] Admin
+- Admin
     - [ ] Kotlin
     - [ ] Java
-- [ ] User
+- User
     - [ ] Kotlin
     - [ ] Java
 
 ### Country (One-to-Many)
 
-- [ ] Get with Pagination and Sorting (`/api/country/get`)
+- Get with Pagination and Sorting (`/api/country/get`)
+    - [x] Kotlin
+    - [x] Java
+- Get all users assigned to country with Pagination and Sorting (`/api/country/get/{countryId}`)
     - [x] Kotlin
     - [ ] Java
-- [ ] Get all users assigned to country with Pagination and Sorting
+- Create (`/api/country/create`)
     - [x] Kotlin
     - [ ] Java
-- [ ] Create (`/api/country/create`)
+- Update (`/api/country/update/{countryId}`)
     - [x] Kotlin
     - [ ] Java
-- [ ] Update (`/api/country/update/{countryId}`)
+- Assign Country to User (`/api/country/assign`)
     - [x] Kotlin
     - [ ] Java
-- [ ] Assign Country to User (`/api/country/assign`)
+- Remove Assigned Country to User (`/api/country/unassign`)
     - [x] Kotlin
     - [ ] Java
-- [ ] Remove Assigned Country to User (`/api/country/unassign`)
-    - [x] Kotlin
-    - [ ] Java
-- [ ] Delete if not in use (`/api/country/delete`)
+- Delete if not in use (`/api/country/delete`)
     - [x] Kotlin
     - [ ] Java
 
@@ -149,7 +149,7 @@
 
 ### Others
 
-- [ ] Unit Testing
 - [ ] Add more documentation
+- [ ] Unit Testing
 
 ## References
