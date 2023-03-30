@@ -1,16 +1,20 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
+import com.chatchatabc.jpademo.application.dto.country.CountryAssignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
 import com.chatchatabc.jpademo.domain.model.Country
+import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.CountryRepository
+import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.CountryService
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 
 @Service
 class CountryServiceImpl (
-    private val countryRepository: CountryRepository
+    private val countryRepository: CountryRepository,
+    private val userRepository: UserRepository
 ) : CountryService {
     private val mapper = ModelMapper()
 
@@ -35,7 +39,29 @@ class CountryServiceImpl (
         queriedCountry.get().apply {
             name = request.name ?: name
         }
-
         return countryRepository.save(queriedCountry.get())
     }
+
+    /**
+     * Assign Country to User
+     */
+    override fun assign(request: CountryAssignRequest): User {
+        val user = userRepository.findById(request.userId)
+        if (user.isEmpty) {
+            throw Exception("User not found")
+        }
+        val country = countryRepository.findById(request.countryId)
+        if (country.isEmpty) {
+            throw Exception("Country not found")
+        }
+
+        // Apply Update
+        user.get().apply {
+            this.country = country.get()
+        }
+
+        return userRepository.save(user.get())
+    }
+
+
 }
