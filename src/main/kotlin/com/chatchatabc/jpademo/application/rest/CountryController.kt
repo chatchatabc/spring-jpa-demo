@@ -71,12 +71,31 @@ class CountryController (
         }
     }
 
+    /**
+     * Assign Country
+     */
     @PutMapping("/assign")
     fun assignCountry(
         @RequestBody request: CountryAssignRequest
     ): ResponseEntity<CountryAssignResponse> {
         return try {
             val user = countryService.assign(request)
+            ResponseEntity.ok(CountryAssignResponse(user, null))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest()
+                .body(CountryAssignResponse(null, ErrorContent("Country Update Error", e.message)))
+        }
+    }
+
+    /**
+     * Unassign Country
+     */
+    @PutMapping("/unassign")
+    fun unassignCountry(
+        @RequestBody request: CountryUnassignRequest
+    ): ResponseEntity<CountryAssignResponse> {
+        return try {
+            val user = countryService.unassign(request)
             ResponseEntity.ok(CountryAssignResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest()

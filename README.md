@@ -125,11 +125,11 @@
 - [ ] Assign Country to User (`/api/country/assign`)
     - [x] Kotlin
     - [ ] Java
-- [ ] Remove Assigned Country to User
-    - [ ] Kotlin
-    - [ ] Java
-- [ ] Delete
+- [ ] Remove Assigned Country to User (`/api/country/unassign`)
     - [x] Kotlin
+    - [ ] Java
+- [ ] Delete if not in use (`/api/country/delete`)
+    - [ ] Kotlin
     - [ ] Java
 
 ### Passport (One-to-One)
