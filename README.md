@@ -45,7 +45,7 @@
     - [x] Registration (`/api/auth/register`)
     - [x] Login (`/api/auth/register`)
     - [x] View Profile (`/api/user/profile`)
-    - [ ] View Profile of other user (`/api/user/profile/view/{username}`)
+    - [x] View Profile of other user (`/api/user/profile/view/{username}`)
     - [ ] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [ ] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
 - [ ] Post

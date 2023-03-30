@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,27 @@ public class UserController {
             }
             return ResponseEntity.ok(new UserProfileResponse(user.get(), null));
         } catch (Exception e) {
-            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new UserProfileResponse(null, new ErrorContent("User Profile Error", e.getMessage())));
+        }
+    }
+
+    /**
+     * View profile of other user
+     *
+     * @param username
+     * @return
+     */
+    @GetMapping("/profile/view/{username}")
+    public ResponseEntity<UserProfileResponse> viewProfile(
+            @PathVariable String username
+    ) {
+        try {
+            Optional<User> user = userRepository.findByUsername(username);
+            if (user.isEmpty()) {
+                throw new Exception("User not found");
+            }
+            return ResponseEntity.ok(new UserProfileResponse(user.get(), null));
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new UserProfileResponse(null, new ErrorContent("User Profile Error", e.getMessage())));
         }
     }
