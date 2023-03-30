@@ -39,6 +39,11 @@ public class User implements UserDetails {
     @Column
     private Instant updatedAt;
 
+    // Relationships
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Create empty collection of authorities
