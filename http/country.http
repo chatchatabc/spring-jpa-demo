@@ -4,7 +4,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "United States"
+  "name": "Philippines"
 }
 
 ### Country Get
@@ -26,8 +26,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "countryId": "5907ed43-4a29-431c-9c8a-96e5995c2952",
-  "userId": "f97ae493-dcb0-4dac-a43f-60548c96fa17"
+  "countryId": "fda452b3-7e5d-4091-8e41-4a3c357c593f",
+  "userId": "31c1b25d-a1fb-4480-83dd-b64d5d131ea4"
 }
 
 ### Country Unassign User
@@ -41,4 +41,8 @@ Content-Type: application/json
 
 ### Users By Country
 GET {{address}}/api/country/get/06d3fc26-6789-42b4-9c89-391b5bb2fa9e
+Authorization: Bearer {{token}}
+
+### Delete Country
+DELETE {{address}}/api/country/delete/fda452b3-7e5d-4091-8e41-4a3c357c593f
 Authorization: Bearer {{token}}

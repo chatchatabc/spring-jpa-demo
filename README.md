@@ -129,7 +129,7 @@
     - [x] Kotlin
     - [ ] Java
 - [ ] Delete if not in use (`/api/country/delete`)
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
 
 ### Passport (One-to-One)

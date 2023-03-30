@@ -120,4 +120,19 @@ class CountryController(
                 .body(CountryAssignResponse(null, ErrorContent("Country Update Error", e.message)))
         }
     }
+
+    /**
+     * Delete Country
+     */
+    @DeleteMapping("/delete/{countryId}")
+    fun deleteCountry(
+        @PathVariable countryId: String
+    ): ResponseEntity<String> {
+        return try {
+            countryRepository.deleteById(countryId)
+            ResponseEntity.ok(null)
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().body(null)
+        }
+    }
 }
