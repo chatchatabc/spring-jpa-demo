@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.user.UserPasswordUpdateRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
@@ -33,9 +32,10 @@ public interface UserService extends UserDetailsService {
      * Update user password
      *
      * @param userId
-     * @param request
+     * @param oldPassword
+     * @param newPassword
      * @return
      */
     @Transactional
-    User updatePassword(String userId, UserPasswordUpdateRequest request) throws Exception;
+    User updatePassword(String userId, String oldPassword, String newPassword) throws Exception;
 }

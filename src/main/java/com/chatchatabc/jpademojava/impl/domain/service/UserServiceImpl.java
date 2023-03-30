@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.user.UserPasswordUpdateRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
@@ -24,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private ModelMapper mapper = new ModelMapper();
+    private final ModelMapper mapper = new ModelMapper();
 
     /**
      * Register new user
@@ -70,22 +69,23 @@ public class UserServiceImpl implements UserService {
      * Update user password
      *
      * @param userId
-     * @param request
+     * @param oldPassword
+     * @param newPassword
      * @return
      */
     @Transactional
     @Override
-    public User updatePassword(String userId, UserPasswordUpdateRequest request) throws Exception {
+    public User updatePassword(String userId, String oldPassword, String newPassword) throws Exception {
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) {
             throw new Exception("User not found");
         }
         // Compare old password with current password
-        if (!passwordEncoder.matches(request.getOldPassword(), user.get().getPassword())) {
+        if (!passwordEncoder.matches(oldPassword, user.get().getPassword())) {
             throw new Exception("Old password is incorrect");
         }
         // Update password
-        user.get().setPassword(passwordEncoder.encode(request.getNewPassword()));
+        user.get().setPassword(passwordEncoder.encode(newPassword));
         return userRepository.save(user.get());
     }
 

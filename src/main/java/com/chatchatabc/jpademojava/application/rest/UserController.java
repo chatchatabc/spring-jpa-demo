@@ -96,7 +96,7 @@ public class UserController {
         try {
             // Get id from security context
             User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = userService.updatePassword(principal.getId(), request);
+            User user = userService.updatePassword(principal.getId(), request.getOldPassword(), request.getNewPassword());
             return ResponseEntity.ok(new UserProfileResponse(user, null));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new UserProfileResponse(null, new ErrorContent("User Profile Error", e.getMessage())));
