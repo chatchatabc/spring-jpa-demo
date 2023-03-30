@@ -12,3 +12,7 @@ data class CountryAssignResponse(
     val user: User?,
     val error: ErrorContent?
 )
+
+data class CountryUnassignRequest(
+    val userId: String
+)
