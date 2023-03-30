@@ -1,0 +1,12 @@
+### Country Create
+POST {{address}}/api/country/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "United States"
+}
+
+### Country Get
+GET {{address}}/api/country/get
+Authorization: Bearer {{token}}

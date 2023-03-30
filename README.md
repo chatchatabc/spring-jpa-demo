@@ -15,14 +15,23 @@
 - Explain Services
 - Create User Examples
 - Create Post Examples
-- One-to-One Relationship
-- One-to-Many Relationship
-- Many-to-Many Relationship
-- Many-to-One Relationship
+- Relationships
+    - One-to-One Relationship
+    - One-to-Many Relationship
+    - Many-to-Many Relationship
+    - Many-to-One Relationship
+- Directions
+    - Unidirectional
+    - Bidirectional
+- ID Generation Strategies
+    - UUID
+    - Identity
 - Application Properties
     - Database
     - Hibernate
 - List of compatible databases
+    - MySQL
+    - PostgreSQL
 - Pageable for Pagination
 - Transactions
 - Migrations
@@ -54,7 +63,7 @@
     - [x] View Profile of other user (`/api/user/profile/view/{username}`)
     - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
-- [ ] Post (One-to-Many)
+- [ ] Post (Many-to-One)
     - [ ] Create
     - [ ] View
     - [ ] Update
@@ -62,9 +71,15 @@
 - [ ] Roles (Many-to-Many)
     - [ ] Admin
     - [ ] User
-- [ ] Country (One-to-One)
+- [ ] Country (One-to-Many)
+    - [ ] Get
     - [ ] Create
-    - [ ] View
+    - [ ] Update
+    - [ ] Assign country to user
+    - [ ] Delete
+- [ ] Passport (One-to-One)
+    - [ ] Get
+    - [ ] Create
     - [ ] Update
     - [ ] Delete
 - [ ] Unit Testing
@@ -78,7 +93,7 @@
     - [x] View Profile of other user (`/api/user/profile/view/{username}`)
     - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
-- [ ] Post (One-to-Many)
+- [ ] Post (Many-to-One)
     - [ ] Create
     - [ ] View
     - [ ] Update
@@ -86,9 +101,15 @@
 - [ ] Roles (Many-to-Many)
     - [ ] Admin
     - [ ] User
-- [ ] Country (One-to-One)
+- [ ] Country (One-to-Many)
+    - [x] Get
+    - [x] Create
+    - [ ] Update
+    - [ ] Assign Country to User
+    - [ ] Delete
+- [ ] Passport (One-to-One)
+    - [ ] Get
     - [ ] Create
-    - [ ] View
     - [ ] Update
     - [ ] Delete
 - [ ] Unit Testing
