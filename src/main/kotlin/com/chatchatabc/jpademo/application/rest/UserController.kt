@@ -58,12 +58,12 @@ class UserController(
      */
     @PutMapping("/profile/update")
     fun updateProfile(
-        @RequestBody user: UserProfileUpdateRequest
+        @RequestBody request: UserProfileUpdateRequest
     ): ResponseEntity<UserProfileResponse> {
         return try {
             // Get id from security context
             val principal = SecurityContextHolder.getContext().authentication.principal as User
-            val user = userService.update(principal.id, user)
+            val user = userService.update(principal.id, request)
             ResponseEntity.ok(UserProfileResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest().body(UserProfileResponse(null, ErrorContent("User Profile Error", e.message)))
@@ -80,7 +80,7 @@ class UserController(
         return try {
             // Get id from security context
             val principal = SecurityContextHolder.getContext().authentication.principal as User
-            val user = userService.updatePassword(principal.id, request)
+            val user = userService.updatePassword(principal.id, request.oldPassword, request.newPassword)
             ResponseEntity.ok(UserProfileResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest()

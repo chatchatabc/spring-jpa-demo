@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.domain.service
 
-import com.chatchatabc.jpademo.application.dto.user.UserPasswordUpdateRequest
 import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.domain.model.User
@@ -26,5 +25,5 @@ interface UserService : UserDetailsService {
      * Update User Password
      */
     @Transactional
-    fun updatePassword(userId: String, request: UserPasswordUpdateRequest): User
+    fun updatePassword(userId: String, oldPassword: String, newPassword: String): User
 }
