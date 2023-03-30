@@ -30,6 +30,11 @@ open class User : UserDetails {
     @Column
     open lateinit var updatedAt: Instant
 
+    // Relationships
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    open var country: Country? = null
+
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         // return empty list
         return mutableListOf()
