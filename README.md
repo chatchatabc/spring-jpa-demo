@@ -115,7 +115,7 @@
     - [x] Java
 - Get all users assigned to country with Pagination and Sorting (`/api/country/get/{countryId}`)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Create (`/api/country/create`)
     - [x] Kotlin
     - [ ] Java
