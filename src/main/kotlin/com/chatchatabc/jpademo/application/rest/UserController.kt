@@ -26,6 +26,9 @@ class UserController(
             // Get id from security context
             val principal = SecurityContextHolder.getContext().authentication.principal as User
             val user = userRepository.findById(principal.id)
+            if (user.isEmpty) {
+                throw Exception("User not found")
+            }
             ResponseEntity.ok(UserProfileResponse(user.get(), null))
         } catch (e: Exception) {
             ResponseEntity.badRequest().body(UserProfileResponse(null, ErrorContent("User Profile Error", e.message)))
