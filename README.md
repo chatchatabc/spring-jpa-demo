@@ -46,6 +46,13 @@
 - Fetch Types
     - Lazy
     - Eager
+- Cascade Types
+    - All
+    - Merge
+    - Persist
+    - Refresh
+    - Remove
+    - Detach
 
 ## TODO
 
@@ -72,10 +79,12 @@
     - [ ] Admin
     - [ ] User
 - [ ] Country (One-to-Many)
-    - [ ] Get
-    - [ ] Create
-    - [ ] Update
-    - [ ] Assign country to user
+    - [ ] Get with Pagination and Sorting (`/api/country/get`)
+    - [ ] Get all users assigned to country with Pagination and Sorting
+    - [ ] Create (`/api/country/create`)
+    - [ ] Update (`/api/country/update/{countryId}`)
+    - [ ] Assign Country to User (`/api/country/assign`)
+    - [ ] Remove Assigned Country to User
     - [ ] Delete
 - [ ] Passport (One-to-One)
     - [ ] Get
@@ -102,10 +111,12 @@
     - [ ] Admin
     - [ ] User
 - [ ] Country (One-to-Many)
-    - [x] Get
-    - [x] Create
-    - [x] Update
-    - [ ] Assign Country to User
+    - [x] Get with Pagination and Sorting (`/api/country/get`)
+    - [ ] Get all users assigned to country with Pagination and Sorting
+    - [x] Create (`/api/country/create`)
+    - [x] Update (`/api/country/update/{countryId}`)
+    - [x] Assign Country to User (`/api/country/assign`)
+    - [ ] Remove Assigned Country to User
     - [ ] Delete
 - [ ] Passport (One-to-One)
     - [ ] Get

@@ -19,3 +19,13 @@ Content-Type: application/json
 {
   "name": "United States of America"
 }
+
+### Country Assign User
+PUT {{address}}/api/country/assign
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "countryId": "5907ed43-4a29-431c-9c8a-96e5995c2952",
+  "userId": "f97ae493-dcb0-4dac-a43f-60548c96fa17"
+}

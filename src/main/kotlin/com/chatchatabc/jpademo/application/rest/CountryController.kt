@@ -1,10 +1,7 @@
 package com.chatchatabc.jpademo.application.rest
 
 import com.chatchatabc.jpademo.application.dto.ErrorContent
-import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
-import com.chatchatabc.jpademo.application.dto.country.CountryCreateResponse
-import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
-import com.chatchatabc.jpademo.application.dto.country.CountryUpdateResponse
+import com.chatchatabc.jpademo.application.dto.country.*
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.repository.CountryRepository
 import com.chatchatabc.jpademo.domain.service.CountryService
@@ -71,6 +68,19 @@ class CountryController (
         } catch (e: Exception) {
             ResponseEntity.badRequest()
                 .body(CountryUpdateResponse(null, ErrorContent("Country Update Error", e.message)))
+        }
+    }
+
+    @PutMapping("/assign")
+    fun assignCountry(
+        @RequestBody request: CountryAssignRequest
+    ): ResponseEntity<CountryAssignResponse> {
+        return try {
+            val user = countryService.assign(request)
+            ResponseEntity.ok(CountryAssignResponse(user, null))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest()
+                .body(CountryAssignResponse(null, ErrorContent("Country Update Error", e.message)))
         }
     }
 }
