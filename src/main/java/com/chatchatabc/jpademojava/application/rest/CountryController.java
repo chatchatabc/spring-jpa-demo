@@ -118,7 +118,7 @@ public class CountryController {
             @RequestBody CountryAssignRequest request
     ) {
         try {
-            User user = countryService.assign(request);
+            User user = countryService.assign(request.getUserId(), request.getCountryId());
             return ResponseEntity.ok(new CountryAssignResponse(user, null));
         } catch (Exception e) {
             e.printStackTrace();

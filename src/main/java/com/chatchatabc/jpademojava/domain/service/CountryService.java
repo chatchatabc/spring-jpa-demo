@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.country.CountryAssignRequest;
 import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
 import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.Country;
@@ -30,8 +29,9 @@ public interface CountryService {
     /**
      * Assign user to country
      *
-     * @param request
+     * @param userId
+     * @param countryId
      * @return
      */
-    User assign(CountryAssignRequest request) throws Exception;
+    User assign(String userId, String countryId) throws Exception;
 }
