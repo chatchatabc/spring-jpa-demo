@@ -1,7 +1,6 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
 import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
-import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
@@ -22,7 +21,7 @@ class UserServiceImpl(
     /**
      * User Register
      */
-    override fun register(user: UserRegisterRequest): User {
+    override fun register(user: User): User {
         // Encrypt password
         val newUser = mapper.map(user, User::class.java)
         newUser.password = passwordEncoder.encode(user.password)

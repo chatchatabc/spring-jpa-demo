@@ -6,8 +6,10 @@ import com.chatchatabc.jpademo.application.dto.user.UserLoginResponse
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.application.dto.user.UserRegisterResponse
 import com.chatchatabc.jpademo.application.rest.jwt.JwtService
+import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
+import org.modelmapper.ModelMapper
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -26,6 +28,8 @@ class AuthController(
     private val authenticationManager: AuthenticationManager,
     private val jwtService: JwtService
 ) {
+    private val mapper = ModelMapper()
+
     /**
      * User Login
      */
@@ -65,7 +69,8 @@ class AuthController(
         @RequestBody userRegisterRequest: UserRegisterRequest
     ): ResponseEntity<UserRegisterResponse> {
         return try {
-            val newUser = userService.register(userRegisterRequest)
+            val mappedUser = mapper.map(userRegisterRequest, User::class.java)
+            val newUser = userService.register(mappedUser)
             return ResponseEntity.status(HttpStatus.CREATED).body(UserRegisterResponse(newUser, null))
         } catch (e: Exception) {
             // TODO: Catch appropriate exception message
