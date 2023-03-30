@@ -113,7 +113,7 @@ class CountryController(
         @RequestBody request: CountryUnassignRequest
     ): ResponseEntity<CountryAssignResponse> {
         return try {
-            val user = countryService.unassign(request)
+            val user = countryService.unassign(request.userId)
             ResponseEntity.ok(CountryAssignResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest()
