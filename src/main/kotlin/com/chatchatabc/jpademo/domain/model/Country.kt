@@ -24,7 +24,7 @@ open class Country {
 
     // Relationships
     @JsonIgnore
-    @OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     open var users: MutableList<User> = mutableListOf()
 
     @PrePersist
