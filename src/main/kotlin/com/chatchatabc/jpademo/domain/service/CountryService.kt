@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.domain.service
 
-import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.model.User
@@ -11,7 +10,7 @@ interface CountryService {
     /**
      * Create Country
      */
-    fun create(country: CountryCreateRequest): Country
+    fun create(country: Country): Country
 
     /**
      * Update Country
