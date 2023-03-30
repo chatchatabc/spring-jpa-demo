@@ -20,5 +20,5 @@ public interface JwtService {
      * @param token
      * @return
      */
-    String validateTokenAndGetId(String token) throws Exception;
+    String validateTokenAndGetId(String token);
 }

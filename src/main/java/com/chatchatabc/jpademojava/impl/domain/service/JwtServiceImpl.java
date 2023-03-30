@@ -50,11 +50,11 @@ public class JwtServiceImpl implements JwtService {
      * @return
      */
     @Override
-    public String validateTokenAndGetId(String token) throws Exception {
+    public String validateTokenAndGetId(String token) {
         try {
             return verifier.verify(token).getSubject();
         } catch (Exception e) {
-            throw new Exception("Invalid token");
+            return null;
         }
     }
 }
