@@ -32,6 +32,9 @@ class SecurityConfig(
                 // Allow access to /api/auth
                 it.requestMatchers("/api/auth/**").permitAll()
 
+                // Authenticated Access to Country Routes
+                it.requestMatchers("/api/country/**").authenticated()
+
                 // Authenticated access to user routes
                 it.requestMatchers("/api/user/**").authenticated()
 
