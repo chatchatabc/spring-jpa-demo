@@ -3,24 +3,21 @@ package com.chatchatabc.jpademo.application.rest
 import com.chatchatabc.jpademo.application.dto.ErrorContent
 import com.chatchatabc.jpademo.application.dto.country.*
 import com.chatchatabc.jpademo.domain.model.Country
+import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.CountryRepository
+import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.CountryService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/country")
-class CountryController (
+class CountryController(
     private val countryRepository: CountryRepository,
-    private val countryService: CountryService
+    private val countryService: CountryService,
+    private val userRepository: UserRepository
 ) {
 
     /**
@@ -34,6 +31,27 @@ class CountryController (
             val countries = countryRepository.findAll(pageable)
             ResponseEntity.ok(countries)
         } catch (e: Exception) {
+            ResponseEntity.badRequest().build()
+        }
+    }
+
+    /**
+     * Get Users by Country
+     */
+    @GetMapping("/get/{countryId}")
+    fun getUsersByCountry(
+        @PathVariable countryId: String,
+        pageable: Pageable
+    ): ResponseEntity<Page<User>> {
+        return try {
+            val country = countryRepository.findById(countryId)
+            if (country.isEmpty) {
+                throw Exception("Country not found")
+            }
+            val users = userRepository.findUsersByCountry(country.get(), pageable)
+            ResponseEntity.ok(users)
+        } catch (e: Exception) {
+            e.printStackTrace()
             ResponseEntity.badRequest().build()
         }
     }

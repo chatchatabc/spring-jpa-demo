@@ -30,7 +30,7 @@ Content-Type: application/json
   "userId": "f97ae493-dcb0-4dac-a43f-60548c96fa17"
 }
 
-### Country Assign User
+### Country Unassign User
 PUT {{address}}/api/country/unassign
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -38,3 +38,7 @@ Content-Type: application/json
 {
   "userId": "f97ae493-dcb0-4dac-a43f-60548c96fa17"
 }
+
+### Users By Country
+GET {{address}}/api/country/get/06d3fc26-6789-42b4-9c89-391b5bb2fa9e
+Authorization: Bearer {{token}}
