@@ -2,16 +2,14 @@ package com.chatchatabc.jpademojava.application.rest;
 
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
 import com.chatchatabc.jpademojava.application.dto.user.UserProfileResponse;
+import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -59,6 +57,26 @@ public class UserController {
                 throw new Exception("User not found");
             }
             return ResponseEntity.ok(new UserProfileResponse(user.get(), null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new UserProfileResponse(null, new ErrorContent("User Profile Error", e.getMessage())));
+        }
+    }
+
+    /**
+     * Update user profile
+     *
+     * @param request
+     * @return
+     */
+    @PutMapping("/profile/update")
+    public ResponseEntity<UserProfileResponse> updateProfile(
+            @RequestBody UserProfileUpdateRequest request
+    ) {
+        try {
+            // Get id from security context
+            User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userService.update(principal.getId(), request);
+            return ResponseEntity.ok(new UserProfileResponse(user, null));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new UserProfileResponse(null, new ErrorContent("User Profile Error", e.getMessage())));
         }
