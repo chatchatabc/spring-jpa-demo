@@ -20,27 +20,33 @@
 - Many-to-Many Relationship
 - Many-to-One Relationship
 - Application Properties
-  - Database
-  - Hibernate
+    - Database
+    - Hibernate
 - List of compatible databases
 - Pageable for Pagination
 - Transactions
 - Migrations
-  - Auto
-  - Manual
+    - Auto
+    - Manual
 - Important of DTOs
-  - Mapping
+    - Mapping
 - Other methods
-  - Rest
-  - GraphQL
+    - Rest
+    - GraphQL
+- JsonIgnores
+- Fetch Types
+    - Lazy
+    - Eager
 
 ## TODO
+
 - [ ] Slidev Presentation
 - [ ] Diagrams
     - [ ] Process Flow
     - [ ] Entity Relationship Diagram
-  
+
 ### Java Version
+
 - [ ] User
     - [x] Registration (`/api/auth/register`)
     - [x] Login (`/api/auth/register`)
@@ -48,14 +54,19 @@
     - [x] View Profile of other user (`/api/user/profile/view/{username}`)
     - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
-- [ ] Post
+- [ ] Post (One-to-Many)
     - [ ] Create
     - [ ] View
     - [ ] Update
     - [ ] Delete
-- [ ] Roles
-  - [ ] Admin
-  - [ ] User
+- [ ] Roles (Many-to-Many)
+    - [ ] Admin
+    - [ ] User
+- [ ] Country (One-to-One)
+    - [ ] Create
+    - [ ] View
+    - [ ] Update
+    - [ ] Delete
 - [ ] Unit Testing
 
 ### Kotlin Version
@@ -67,17 +78,23 @@
     - [x] View Profile of other user (`/api/user/profile/view/{username}`)
     - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
     - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
-- [ ] Post
+- [ ] Post (One-to-Many)
     - [ ] Create
     - [ ] View
     - [ ] Update
     - [ ] Delete
-- [ ] Roles
+- [ ] Roles (Many-to-Many)
     - [ ] Admin
     - [ ] User
+- [ ] Country (One-to-One)
+    - [ ] Create
+    - [ ] View
+    - [ ] Update
+    - [ ] Delete
 - [ ] Unit Testing
 
 ### Others
+
 - [ ] Add more documentation
 
 ## References
