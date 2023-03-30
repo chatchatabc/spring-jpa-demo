@@ -121,7 +121,7 @@
     - [x] Java
 - Update (`/api/country/update/{countryId}`)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Assign Country to User (`/api/country/assign`)
     - [x] Kotlin
     - [ ] Java

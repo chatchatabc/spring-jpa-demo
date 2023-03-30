@@ -3,6 +3,8 @@ package com.chatchatabc.jpademojava.application.rest;
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
 import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
 import com.chatchatabc.jpademojava.application.dto.country.CountryCreateResponse;
+import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
+import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateResponse;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
@@ -87,6 +89,29 @@ public class CountryController {
             // TODO: Improve error message
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     new CountryCreateResponse(null, new ErrorContent("Create Country Error", e.getMessage()))
+            );
+        }
+    }
+
+    /**
+     * Update country
+     *
+     * @param countryId
+     * @param request
+     * @return
+     */
+    @PutMapping("/update/{countryId}")
+    public ResponseEntity<CountryUpdateResponse> updateCountry(
+            @PathVariable String countryId,
+            @RequestBody CountryUpdateRequest request
+    ) {
+        try {
+            Country country = countryService.update(countryId, request);
+            return ResponseEntity.ok(new CountryUpdateResponse(country, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new CountryUpdateResponse(null, new ErrorContent("Update Country Error", e.getMessage()))
             );
         }
     }
