@@ -1,4 +1,4 @@
-package com.chatchatabc.jpademojava.domain.service;
+package com.chatchatabc.jpademojava.application.rest.jwt;
 
 import com.chatchatabc.jpademojava.domain.model.User;
 import org.springframework.stereotype.Service;

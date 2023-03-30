@@ -7,7 +7,7 @@ import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserRegisterResponse;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
-import com.chatchatabc.jpademojava.domain.service.JwtService;
+import com.chatchatabc.jpademojava.application.rest.jwt.JwtService;
 import com.chatchatabc.jpademojava.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
