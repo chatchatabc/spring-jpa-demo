@@ -61,72 +61,95 @@
     - [ ] Process Flow
     - [ ] Entity Relationship Diagram
 
-### Java Version
+## Features
 
+### User
+
+- [x] Registration (`/api/auth/register`)
+    - [x] Kotlin
+    - [x] Java
+- [x] Login (`/api/auth/register`)
+    - [x] Kotlin
+    - [x] Java
+- [x] View Profile (`/api/user/profile`)
+    - [x] Kotlin
+    - [x] Java
+- [x] View Profile of other user (`/api/user/profile/view/{username}`)
+    - [x] Kotlin
+    - [x] Java
+- [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
+    - [x] Kotlin
+    - [x] Java
+- [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
+    - [x] Kotlin
+    - [x] Java
+
+### Post (Many-to-One)
+
+- [ ] Create
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] View
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Update
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Delete
+    - [ ] Kotlin
+    - [ ] Java
+
+### Roles (Many-to-Many)
+
+- [ ] Admin
+    - [ ] Kotlin
+    - [ ] Java
 - [ ] User
-    - [x] Registration (`/api/auth/register`)
-    - [x] Login (`/api/auth/register`)
-    - [x] View Profile (`/api/user/profile`)
-    - [x] View Profile of other user (`/api/user/profile/view/{username}`)
-    - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
-    - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
-- [ ] Post (Many-to-One)
-    - [ ] Create
-    - [ ] View
-    - [ ] Update
-    - [ ] Delete
-- [ ] Roles (Many-to-Many)
-    - [ ] Admin
-    - [ ] User
-- [ ] Country (One-to-Many)
-    - [ ] Get with Pagination and Sorting (`/api/country/get`)
-    - [ ] Get all users assigned to country with Pagination and Sorting
-    - [ ] Create (`/api/country/create`)
-    - [ ] Update (`/api/country/update/{countryId}`)
-    - [ ] Assign Country to User (`/api/country/assign`)
-    - [ ] Remove Assigned Country to User
-    - [ ] Delete
-- [ ] Passport (One-to-One)
-    - [ ] Get
-    - [ ] Create
-    - [ ] Update
-    - [ ] Delete
-- [ ] Unit Testing
+    - [ ] Kotlin
+    - [ ] Java
 
-### Kotlin Version
+### Country (One-to-Many)
 
-- [ ] User
-    - [x] Registration (`/api/auth/register`)
-    - [x] Login (`/api/auth/register`)
-    - [x] View Profile (`/api/user/profile`)
-    - [x] View Profile of other user (`/api/user/profile/view/{username}`)
-    - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
-    - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
-- [ ] Post (Many-to-One)
-    - [ ] Create
-    - [ ] View
-    - [ ] Update
-    - [ ] Delete
-- [ ] Roles (Many-to-Many)
-    - [ ] Admin
-    - [ ] User
-- [ ] Country (One-to-Many)
-    - [x] Get with Pagination and Sorting (`/api/country/get`)
-    - [ ] Get all users assigned to country with Pagination and Sorting
-    - [x] Create (`/api/country/create`)
-    - [x] Update (`/api/country/update/{countryId}`)
-    - [x] Assign Country to User (`/api/country/assign`)
-    - [ ] Remove Assigned Country to User
-    - [ ] Delete
-- [ ] Passport (One-to-One)
-    - [ ] Get
-    - [ ] Create
-    - [ ] Update
-    - [ ] Delete
-- [ ] Unit Testing
+- [ ] Get with Pagination and Sorting (`/api/country/get`)
+    - [x] Kotlin
+    - [ ] Java
+- [ ] Get all users assigned to country with Pagination and Sorting
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Create (`/api/country/create`)
+    - [x] Kotlin
+    - [ ] Java
+- [ ] Update (`/api/country/update/{countryId}`)
+    - [x] Kotlin
+    - [ ] Java
+- [ ] Assign Country to User (`/api/country/assign`)
+    - [x] Kotlin
+    - [ ] Java
+- [ ] Remove Assigned Country to User
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Delete
+    - [x] Kotlin
+    - [ ] Java
+
+### Passport (One-to-One)
+
+- [ ] Get
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Create
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Update
+    - [ ] Kotlin
+    - [ ] Java
+- [ ] Delete
+    - [ ] Kotlin
+    - [ ] Java
 
 ### Others
 
+- [ ] Unit Testing
 - [ ] Add more documentation
 
 ## References
