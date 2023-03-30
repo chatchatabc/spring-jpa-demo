@@ -7,6 +7,7 @@ import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.CountryService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,8 @@ public class CountryController {
     private CountryRepository countryRepository;
     @Autowired
     private UserRepository userRepository;
+
+    private final ModelMapper mapper = new ModelMapper();
 
     /**
      * Get countries
@@ -80,7 +83,8 @@ public class CountryController {
             @RequestBody CountryCreateRequest request
     ) {
         try {
-            Country country = countryService.create(request);
+            Country newCountry = mapper.map(request, Country.class);
+            Country country = countryService.create(newCountry);
             return ResponseEntity.ok(new CountryCreateResponse(country, null));
         } catch (Exception e) {
             // TODO: Improve error message

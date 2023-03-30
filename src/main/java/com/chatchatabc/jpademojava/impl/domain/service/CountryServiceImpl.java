@@ -1,13 +1,11 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
 import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.Country;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.CountryService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +18,15 @@ public class CountryServiceImpl implements CountryService {
     @Autowired
     private UserRepository userRepository;
 
-    private final ModelMapper mapper = new ModelMapper();
-
     /**
      * Create country
      *
-     * @param request
+     * @param country
      * @return
      */
     @Override
-    public Country create(CountryCreateRequest request) {
-        Country newCountry = mapper.map(request, Country.class);
-        return countryRepository.save(newCountry);
+    public Country create(Country country) {
+        return countryRepository.save(country);
     }
 
     /**
