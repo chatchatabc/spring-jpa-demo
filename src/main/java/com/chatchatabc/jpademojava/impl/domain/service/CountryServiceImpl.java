@@ -1,9 +1,12 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
+import com.chatchatabc.jpademojava.application.dto.country.CountryAssignRequest;
 import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
 import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.Country;
+import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
+import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.CountryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ import java.util.Optional;
 public class CountryServiceImpl implements CountryService {
     @Autowired
     private CountryRepository countryRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     private final ModelMapper mapper = new ModelMapper();
 
@@ -50,5 +55,30 @@ public class CountryServiceImpl implements CountryService {
         }
 
         return countryRepository.save(queriedCountry.get());
+    }
+
+    /**
+     * Assign user to country
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public User assign(CountryAssignRequest request) throws Exception {
+        Optional<User> user = userRepository.findById(request.getUserId());
+        if (user.isEmpty()) {
+            throw new Exception("User not found");
+        }
+        Optional<Country> country = countryRepository.findById(request.getCountryId());
+        if (country.isEmpty()) {
+            throw new Exception("Country not found");
+        }
+
+        // Apply Update
+        if (country.isPresent()) {
+            user.get().setCountry(country.get());
+        }
+
+        return userRepository.save(user.get());
     }
 }

@@ -53,6 +53,9 @@
     - Refresh
     - Remove
     - Detach
+- Query
+  - Method
+  - Language
 
 ## TODO
 

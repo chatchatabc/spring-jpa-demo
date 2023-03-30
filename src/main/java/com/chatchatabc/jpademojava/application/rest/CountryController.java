@@ -1,10 +1,7 @@
 package com.chatchatabc.jpademojava.application.rest;
 
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
-import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
-import com.chatchatabc.jpademojava.application.dto.country.CountryCreateResponse;
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateResponse;
+import com.chatchatabc.jpademojava.application.dto.country.*;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
@@ -112,6 +109,21 @@ public class CountryController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     new CountryUpdateResponse(null, new ErrorContent("Update Country Error", e.getMessage()))
+            );
+        }
+    }
+
+    @PutMapping("/assign")
+    public ResponseEntity<CountryAssignResponse> assignCountry(
+            @RequestBody CountryAssignRequest request
+    ) {
+        try {
+            User user = countryService.assign(request);
+            return ResponseEntity.ok(new CountryAssignResponse(user, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new CountryAssignResponse(null, new ErrorContent("Assign Country Error", e.getMessage()))
             );
         }
     }
