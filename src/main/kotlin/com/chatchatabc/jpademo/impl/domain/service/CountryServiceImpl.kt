@@ -2,6 +2,7 @@ package com.chatchatabc.jpademo.impl.domain.service
 
 import com.chatchatabc.jpademo.application.dto.country.CountryAssignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
+import com.chatchatabc.jpademo.application.dto.country.CountryUnassignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.model.User
@@ -60,6 +61,18 @@ class CountryServiceImpl (
             this.country = country.get()
         }
 
+        return userRepository.save(user.get())
+    }
+
+    /**
+     * Unassign Country from User
+     */
+    override fun unassign(request: CountryUnassignRequest): User {
+        val user = userRepository.findById(request.userId)
+        if (user.isEmpty) {
+            throw Exception("User not found")
+        }
+        user.get().country = null
         return userRepository.save(user.get())
     }
 
