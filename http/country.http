@@ -10,3 +10,12 @@ Content-Type: application/json
 ### Country Get
 GET {{address}}/api/country/get
 Authorization: Bearer {{token}}
+
+### Country Update
+PUT {{address}}/api/country/update/5907ed43-4a29-431c-9c8a-96e5995c2952
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "United States of America"
+}

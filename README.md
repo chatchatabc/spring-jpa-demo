@@ -104,7 +104,7 @@
 - [ ] Country (One-to-Many)
     - [x] Get
     - [x] Create
-    - [ ] Update
+    - [x] Update
     - [ ] Assign Country to User
     - [ ] Delete
 - [ ] Passport (One-to-One)

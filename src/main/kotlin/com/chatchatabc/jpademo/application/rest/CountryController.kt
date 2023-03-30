@@ -3,6 +3,8 @@ package com.chatchatabc.jpademo.application.rest
 import com.chatchatabc.jpademo.application.dto.ErrorContent
 import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryCreateResponse
+import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
+import com.chatchatabc.jpademo.application.dto.country.CountryUpdateResponse
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.repository.CountryRepository
 import com.chatchatabc.jpademo.domain.service.CountryService
@@ -10,7 +12,9 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -53,5 +57,20 @@ class CountryController (
         }
     }
 
-    // TODO: Update Country
+    /**
+     * Update Country
+     */
+    @PutMapping("/update/{countryId}")
+    fun updateCountry(
+        @PathVariable countryId: String,
+        @RequestBody request: CountryUpdateRequest
+    ): ResponseEntity<CountryUpdateResponse> {
+        return try {
+            val country = countryService.update(countryId, request)
+            ResponseEntity.ok(CountryUpdateResponse(country, null))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest()
+                .body(CountryUpdateResponse(null, ErrorContent("Country Update Error", e.message)))
+        }
+    }
 }
