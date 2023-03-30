@@ -47,7 +47,7 @@
     - [x] View Profile (`/api/user/profile`)
     - [x] View Profile of other user (`/api/user/profile/view/{username}`)
     - [x] Update Profile TRANSACTIONAL (`/api/user/profile/update`)
-    - [ ] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
+    - [x] Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
 - [ ] Post
     - [ ] Create
     - [ ] View
