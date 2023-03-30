@@ -1,7 +1,6 @@
 package com.chatchatabc.jpademojava.domain.service;
 
 import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
-import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public interface UserService extends UserDetailsService {
      * @param user
      * @return
      */
-    User register(UserRegisterRequest user);
+    User register(User user);
 
     /**
      * Update user profile

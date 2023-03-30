@@ -1,11 +1,9 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
 import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
-import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +21,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private final ModelMapper mapper = new ModelMapper();
 
     /**
      * Register new user
@@ -32,11 +29,10 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public User register(UserRegisterRequest user) {
+    public User register(User user) {
         // Encrypt password
-        User newUser = mapper.map(user, User.class);
-        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(newUser);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 
     /**
