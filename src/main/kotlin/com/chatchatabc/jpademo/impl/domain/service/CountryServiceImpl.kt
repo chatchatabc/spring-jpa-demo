@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
-import com.chatchatabc.jpademo.application.dto.country.CountryAssignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUnassignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
@@ -46,12 +45,12 @@ class CountryServiceImpl (
     /**
      * Assign Country to User
      */
-    override fun assign(request: CountryAssignRequest): User {
-        val user = userRepository.findById(request.userId)
+    override fun assign(userId: String, countryId: String): User {
+        val user = userRepository.findById(userId)
         if (user.isEmpty) {
             throw Exception("User not found")
         }
-        val country = countryRepository.findById(request.countryId)
+        val country = countryRepository.findById(countryId)
         if (country.isEmpty) {
             throw Exception("Country not found")
         }

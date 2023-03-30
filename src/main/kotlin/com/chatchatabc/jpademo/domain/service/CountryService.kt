@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.domain.service
 
-import com.chatchatabc.jpademo.application.dto.country.CountryAssignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUnassignRequest
 import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
@@ -23,7 +22,7 @@ interface CountryService {
     /**
      * Assign Country to User
      */
-    fun assign(request: CountryAssignRequest): User
+    fun assign(userId: String, countryId: String): User
 
     /**
      * Unassign Country from User

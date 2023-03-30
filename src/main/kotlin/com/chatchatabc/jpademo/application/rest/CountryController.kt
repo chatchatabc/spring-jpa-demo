@@ -97,7 +97,7 @@ class CountryController(
         @RequestBody request: CountryAssignRequest
     ): ResponseEntity<CountryAssignResponse> {
         return try {
-            val user = countryService.assign(request)
+            val user = countryService.assign(request.userId, request.countryId)
             ResponseEntity.ok(CountryAssignResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest()
