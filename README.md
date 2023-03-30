@@ -118,7 +118,7 @@
     - [x] Java
 - Create (`/api/country/create`)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Update (`/api/country/update/{countryId}`)
     - [x] Kotlin
     - [ ] Java

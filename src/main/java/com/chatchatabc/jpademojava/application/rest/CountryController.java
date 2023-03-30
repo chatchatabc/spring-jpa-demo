@@ -1,5 +1,8 @@
 package com.chatchatabc.jpademojava.application.rest;
 
+import com.chatchatabc.jpademojava.application.dto.ErrorContent;
+import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
+import com.chatchatabc.jpademojava.application.dto.country.CountryCreateResponse;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
@@ -8,11 +11,9 @@ import com.chatchatabc.jpademojava.domain.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -66,6 +67,27 @@ public class CountryController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    /**
+     * Create country
+     *
+     * @param request
+     * @return
+     */
+    @PostMapping("/create")
+    public ResponseEntity<CountryCreateResponse> createCountry(
+            @RequestBody CountryCreateRequest request
+    ) {
+        try {
+            Country country = countryService.create(request);
+            return ResponseEntity.ok(new CountryCreateResponse(country, null));
+        } catch (Exception e) {
+            // TODO: Improve error message
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new CountryCreateResponse(null, new ErrorContent("Create Country Error", e.getMessage()))
+            );
         }
     }
 }
