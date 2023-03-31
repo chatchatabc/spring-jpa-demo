@@ -35,6 +35,10 @@ open class User : UserDetails {
     @JoinColumn(name = "country_id")
     open var country: Country? = null
 
+    @OneToOne
+    @JoinColumn(name = "passport_id")
+    open var passport: Passport? = null
+
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         // return empty list
         return mutableListOf()
