@@ -11,4 +11,9 @@ interface PassportService {
      * Create Passport
      */
     fun create(userId: String, passport: Passport): User
+
+    /**
+     * Delete Passport
+     */
+    fun delete(userId: String): User
 }

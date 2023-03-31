@@ -28,4 +28,22 @@ class PassportServiceImpl(
         user.get().passport = savedPassport
         return userRepository.save(user.get())
     }
+
+    /**
+     * Delete Passport
+     */
+    override fun delete(userId: String): User {
+        val user = userRepository.findById(userId)
+        if (user.isEmpty) {
+            throw Exception("User not found")
+        }
+        val passport = passportRepository.findPassportByUser(user.get())
+        if (passport.isEmpty) {
+            throw Exception("Passport not found")
+        }
+        user.get().passport = null
+        val savedUser = userRepository.save(user.get())
+        passportRepository.delete(passport.get())
+        return savedUser
+    }
 }
