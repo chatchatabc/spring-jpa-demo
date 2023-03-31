@@ -44,6 +44,10 @@ public class User implements UserDetails {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    @OneToOne
+    @JoinColumn(name = "passport_id")
+    private Passport passport;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Create empty collection of authorities
