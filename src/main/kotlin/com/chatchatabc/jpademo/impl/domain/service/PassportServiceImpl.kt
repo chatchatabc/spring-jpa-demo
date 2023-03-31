@@ -30,6 +30,23 @@ class PassportServiceImpl(
     }
 
     /**
+     * Update Passport
+     */
+    override fun update(passportId: String, newPassportInfo: Passport): Passport {
+        val passport = passportRepository.findById(passportId)
+        if (passport.isEmpty) {
+            throw Exception("Passport not found")
+        }
+
+        // Update fields
+        passport.get().apply {
+            number = newPassportInfo.number ?: number
+        }
+
+        return passportRepository.save(passport.get())
+    }
+
+    /**
      * Delete Passport
      */
     override fun delete(userId: String): User {

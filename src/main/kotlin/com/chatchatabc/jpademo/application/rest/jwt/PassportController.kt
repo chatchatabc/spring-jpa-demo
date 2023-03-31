@@ -1,9 +1,7 @@
 package com.chatchatabc.jpademo.application.rest.jwt
 
 import com.chatchatabc.jpademo.application.dto.ErrorContent
-import com.chatchatabc.jpademo.application.dto.passport.PassportCreateRequest
-import com.chatchatabc.jpademo.application.dto.passport.PassportCreateResponse
-import com.chatchatabc.jpademo.application.dto.passport.PassportDeleteResponse
+import com.chatchatabc.jpademo.application.dto.passport.*
 import com.chatchatabc.jpademo.domain.model.Passport
 import com.chatchatabc.jpademo.domain.repository.PassportRepository
 import com.chatchatabc.jpademo.domain.repository.UserRepository
@@ -59,16 +57,36 @@ class PassportController(
     fun createPassport(
         @RequestBody request: PassportCreateRequest,
         @PathVariable userId: String
-    ): ResponseEntity<PassportCreateResponse> {
+    ): ResponseEntity<PassportResponse> {
         return try {
             val passport = mapper.map(request, Passport::class.java)
             val createdPassport = passportService.create(userId, passport)
-            ResponseEntity.ok(PassportCreateResponse(createdPassport, null))
+            ResponseEntity.ok(PassportResponse(createdPassport, null))
         } catch (e: Exception) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                PassportCreateResponse(
+                PassportResponse(
                     null, ErrorContent(
                         "Create Passport Error", e.message ?: "Unknown Error"
+                    )
+                )
+            )
+        }
+    }
+
+    @PutMapping("/update/{passportId}")
+    fun updatePassport(
+        @PathVariable passportId: String,
+        @RequestBody request: PassportUpdateRequest
+    ): ResponseEntity<PassportUpdateResponse> {
+        return try {
+            val newPassportInfo = mapper.map(request, Passport::class.java)
+            val updatedPassport = passportService.update(passportId, newPassportInfo)
+            ResponseEntity.ok(PassportUpdateResponse(updatedPassport, null))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().body(
+                PassportUpdateResponse(
+                    null, ErrorContent(
+                        "Update Passport Error", e.message ?: "Unknown Error"
                     )
                 )
             )
