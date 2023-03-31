@@ -22,6 +22,9 @@ class PassportController(
 ) {
     private val mapper = ModelMapper()
 
+    /**
+     * Get Passports
+     */
     @GetMapping("/get")
     fun getPassports(
         pageable: Pageable
@@ -60,8 +63,8 @@ class PassportController(
     ): ResponseEntity<PassportResponse> {
         return try {
             val passport = mapper.map(request, Passport::class.java)
-            val createdPassport = passportService.create(userId, passport)
-            ResponseEntity.ok(PassportResponse(createdPassport, null))
+            val updatedUser = passportService.create(userId, passport)
+            ResponseEntity.ok(PassportResponse(updatedUser, null))
         } catch (e: Exception) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 PassportResponse(
@@ -73,6 +76,9 @@ class PassportController(
         }
     }
 
+    /**
+     * Update Passport
+     */
     @PutMapping("/update/{passportId}")
     fun updatePassport(
         @PathVariable passportId: String,

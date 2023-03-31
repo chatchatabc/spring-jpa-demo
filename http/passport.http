@@ -1,5 +1,5 @@
 ### Passport Create
-POST {{address}}/api/passport/create/035c02a9-7432-4199-8e98-55142410f215
+POST {{address}}/api/passport/create/fc75c57a-577c-4d46-88dd-d96d2a32ffcd
 Authorization: Bearer {{token}}
 Content-Type: application/json
 

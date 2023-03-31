@@ -26,7 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private UserRepository userRepository;
 
-    private Logger log = LoggerFactory.getLogger(JwtRequestFilter.class);
+    private final Logger log = LoggerFactory.getLogger(JwtRequestFilter.class);
 
     /**
      * Filter the request and validate the token
