@@ -130,10 +130,10 @@
     - [x] Java
 - Remove Assigned Country to User (`/api/country/unassign`)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Delete if not in use (`/api/country/delete`)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 
 ### Passport (One-to-One)
 

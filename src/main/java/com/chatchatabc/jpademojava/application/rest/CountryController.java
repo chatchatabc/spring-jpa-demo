@@ -160,4 +160,16 @@ public class CountryController {
             );
         }
     }
+
+    @DeleteMapping("/delete/{countryId}")
+    public ResponseEntity<String> deleteCountry(
+            @PathVariable String countryId
+    ) {
+        try {
+            countryRepository.deleteById(countryId);
+            return ResponseEntity.ok("Delete country success");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete country error");
+        }
+    }
 }
