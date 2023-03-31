@@ -127,7 +127,7 @@
     - [x] Java
 - Assign Country to User (`/api/country/assign`)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Remove Assigned Country to User (`/api/country/unassign`)
     - [x] Kotlin
     - [ ] Java

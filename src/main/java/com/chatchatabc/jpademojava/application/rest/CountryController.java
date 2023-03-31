@@ -1,5 +1,6 @@
 package com.chatchatabc.jpademojava.application.rest;
 
+import com.chatchatabc.jpademo.application.dto.country.CountryUnassignRequest;
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
 import com.chatchatabc.jpademojava.application.dto.country.*;
 import com.chatchatabc.jpademojava.domain.model.Country;
@@ -118,6 +119,12 @@ public class CountryController {
         }
     }
 
+    /**
+     * Assign country to user
+     *
+     * @param request
+     * @return
+     */
     @PutMapping("/assign")
     public ResponseEntity<CountryAssignResponse> assignCountry(
             @RequestBody CountryAssignRequest request
@@ -129,6 +136,27 @@ public class CountryController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     new CountryAssignResponse(null, new ErrorContent("Assign Country Error", e.getMessage()))
+            );
+        }
+    }
+
+    /**
+     * Unassign country from user
+     *
+     * @param request
+     * @return
+     */
+    @PutMapping("/unassign")
+    public ResponseEntity<CountryAssignResponse> unassignCountry(
+            @RequestBody CountryUnassignRequest request
+    ) {
+        try {
+            User user = countryService.unassign(request.getUserId());
+            return ResponseEntity.ok(new CountryAssignResponse(user, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new CountryAssignResponse(null, new ErrorContent("Unassign Country Error", e.getMessage()))
             );
         }
     }

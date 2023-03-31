@@ -32,4 +32,13 @@ public interface CountryService {
      * @return
      */
     User assign(String userId, String countryId) throws Exception;
+
+    /**
+     * Unassign user from country
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    User unassign(String userId) throws Exception;
 }

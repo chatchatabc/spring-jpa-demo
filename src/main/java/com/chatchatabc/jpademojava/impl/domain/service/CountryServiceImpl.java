@@ -73,4 +73,21 @@ public class CountryServiceImpl implements CountryService {
 
         return userRepository.save(user.get());
     }
+
+    /**
+     * Unassign user from country
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public User unassign(String userId) throws Exception {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new Exception("User not found");
+        }
+        user.get().setCountry(null);
+        return userRepository.save(user.get());
+    }
 }
