@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
-import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
@@ -32,7 +31,7 @@ class UserServiceImpl(
      * Update User Profile
      */
     @Transactional
-    override fun update(userId: String, user: UserProfileUpdateRequest): User {
+    override fun update(userId: String, newUserInfo: User): User {
         val queriedUser = userRepository.findById(userId)
         if (queriedUser.isEmpty) {
             throw Exception("User not found")
@@ -41,9 +40,9 @@ class UserServiceImpl(
         // Apply update
         queriedUser.get().apply {
             // Update email if not null
-            email = user.email ?: email
+            email = newUserInfo.email ?: email
             // Update username if not null
-            username = user.username ?: username
+            username = newUserInfo.username ?: username
         }
         return userRepository.save(queriedUser.get())
 
