@@ -141,8 +141,11 @@
 - [ ] Create
     - [x] Kotlin
     - [ ] Java
-- [ ] Get
+- [ ] Get Passport with Pagination and Sorting
   - [ ] Kotlin
+  - [ ] Java
+- [ ] Get by User
+  - [x] Kotlin
   - [ ] Java
 - [ ] Update
     - [ ] Kotlin

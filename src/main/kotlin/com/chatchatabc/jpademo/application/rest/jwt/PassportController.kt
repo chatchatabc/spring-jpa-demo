@@ -5,6 +5,7 @@ import com.chatchatabc.jpademo.application.dto.passport.PassportCreateRequest
 import com.chatchatabc.jpademo.application.dto.passport.PassportCreateResponse
 import com.chatchatabc.jpademo.domain.model.Passport
 import com.chatchatabc.jpademo.domain.repository.PassportRepository
+import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.PassportService
 import org.modelmapper.ModelMapper
 import org.springframework.http.HttpStatus
@@ -15,10 +16,30 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/passport")
 class PassportController(
     private val passportService: PassportService,
-    private val passportRepository: PassportRepository
+    private val passportRepository: PassportRepository,
+    private val userRepository: UserRepository
 ) {
     private val mapper = ModelMapper()
 
+    /**
+     * Get Passport by User
+     */
+    @GetMapping("/get/{userId}")
+    fun getPassport(
+        @PathVariable userId: String
+    ): ResponseEntity<Passport> {
+        return try {
+            val user = userRepository.findById(userId)
+            val passport = passportRepository.findPassportByUser(user.get())
+            ResponseEntity.ok(passport.get())
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().build()
+        }
+    }
+
+    /**
+     * Create Passport
+     */
     @PostMapping("/create/{userId}")
     fun createPassport(
         @RequestBody request: PassportCreateRequest,
