@@ -3,6 +3,7 @@ package com.chatchatabc.jpademo.application.rest.jwt
 import com.chatchatabc.jpademo.application.dto.ErrorContent
 import com.chatchatabc.jpademo.application.dto.passport.PassportCreateRequest
 import com.chatchatabc.jpademo.application.dto.passport.PassportCreateResponse
+import com.chatchatabc.jpademo.application.dto.passport.PassportDeleteResponse
 import com.chatchatabc.jpademo.domain.model.Passport
 import com.chatchatabc.jpademo.domain.repository.PassportRepository
 import com.chatchatabc.jpademo.domain.repository.UserRepository
@@ -68,6 +69,27 @@ class PassportController(
                 PassportCreateResponse(
                     null, ErrorContent(
                         "Create Passport Error", e.message ?: "Unknown Error"
+                    )
+                )
+            )
+        }
+    }
+
+    /**
+     * Delete Passport
+     */
+    @DeleteMapping("/delete/{userId}")
+    fun deletePassport(
+        @PathVariable userId: String
+    ): ResponseEntity<PassportDeleteResponse> {
+        return try {
+            val user = passportService.delete(userId)
+            ResponseEntity.ok(PassportDeleteResponse(user, null))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().body(
+                PassportDeleteResponse(
+                    null, ErrorContent(
+                        "Delete Passport Error", e.message ?: "Unknown Error"
                     )
                 )
             )

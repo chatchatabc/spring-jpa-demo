@@ -54,8 +54,8 @@
     - Remove
     - Detach
 - Query
-  - Method
-  - Language
+    - Method
+    - Language
 - Versioning of APIs
 
 ## TODO
@@ -142,16 +142,16 @@
     - [x] Kotlin
     - [ ] Java
 - Get Passport with Pagination and Sorting
-  - [x] Kotlin
-  - [ ] Java
+    - [x] Kotlin
+    - [ ] Java
 - Get by User
-  - [x] Kotlin
-  - [ ] Java
+    - [x] Kotlin
+    - [ ] Java
 - Update
     - [ ] Kotlin
     - [ ] Java
 - Delete
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
 
 ### Others
