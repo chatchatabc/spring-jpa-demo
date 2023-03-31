@@ -56,6 +56,7 @@
 - Query
   - Method
   - Language
+- Versioning of APIs
 
 ## TODO
 
@@ -92,7 +93,7 @@
 - Create
     - [ ] Kotlin
     - [ ] Java
-- View
+- Read
     - [ ] Kotlin
     - [ ] Java
 - Update
@@ -137,12 +138,12 @@
 
 ### Passport (One-to-One)
 
-- [ ] Get
-    - [ ] Kotlin
-    - [ ] Java
 - [ ] Create
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
+- [ ] Get
+  - [ ] Kotlin
+  - [ ] Java
 - [ ] Update
     - [ ] Kotlin
     - [ ] Java

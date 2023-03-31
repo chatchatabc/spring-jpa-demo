@@ -1,0 +1,8 @@
+### Passport Create
+POST {{address}}/api/passport/create/035c02a9-7432-4199-8e98-55142410f215
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "number": "1231231231"
+}
