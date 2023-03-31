@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -21,11 +20,11 @@ public interface UserService extends UserDetailsService {
      * Update user profile
      *
      * @param userId
-     * @param user
+     * @param newUserInfo
      * @return
      */
     @Transactional
-    User update(String userId, UserProfileUpdateRequest user) throws Exception;
+    User update(String userId, User newUserInfo) throws Exception;
 
     /**
      * Update user password

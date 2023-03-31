@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.UserService;
@@ -39,12 +38,12 @@ public class UserServiceImpl implements UserService {
      * Update user profile
      *
      * @param userId
-     * @param user
+     * @param newUserInfo
      * @return
      */
     @Transactional
     @Override
-    public User update(String userId, UserProfileUpdateRequest user) throws Exception {
+    public User update(String userId, User newUserInfo) throws Exception {
         Optional<User> queriedUser = userRepository.findById(userId);
         if (queriedUser.isEmpty()) {
             throw new Exception("User not found");
@@ -52,11 +51,11 @@ public class UserServiceImpl implements UserService {
 
         // Apply update to fields if not null
         // TODO: Could be improved?
-        if (user.getEmail() != null) {
-            queriedUser.get().setEmail(user.getEmail());
+        if (newUserInfo.getEmail() != null) {
+            queriedUser.get().setEmail(newUserInfo.getEmail());
         }
-        if (user.getUsername() != null) {
-            queriedUser.get().setUsername(user.getUsername());
+        if (newUserInfo.getUsername() != null) {
+            queriedUser.get().setUsername(newUserInfo.getUsername());
         }
         return userRepository.save(queriedUser.get());
     }

@@ -7,6 +7,7 @@ import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +22,8 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+
+    private final ModelMapper modelMapper = new ModelMapper();
 
     /**
      * Get user profile
@@ -76,7 +79,8 @@ public class UserController {
         try {
             // Get id from security context
             User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = userService.update(principal.getId(), request);
+            User newUserInfo = modelMapper.map(request, User.class);
+            User user = userService.update(principal.getId(), newUserInfo);
             return ResponseEntity.ok(new UserProfileResponse(user, null));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new UserProfileResponse(null, new ErrorContent("User Profile Error", e.getMessage())));
