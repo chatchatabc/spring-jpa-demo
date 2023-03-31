@@ -7,6 +7,10 @@ Content-Type: application/json
   "number": "1231231231"
 }
 
+### Get Passports
+GET {{address}}/api/passport/get
+Authorization: Bearer {{token}}
+
 ### Get Passport by User
 GET {{address}}/api/passport/get/035c02a9-7432-4199-8e98-55142410f215
 Authorization: Bearer {{token}}

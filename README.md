@@ -138,19 +138,19 @@
 
 ### Passport (One-to-One)
 
-- [ ] Create
+- Create
     - [x] Kotlin
     - [ ] Java
-- [ ] Get Passport with Pagination and Sorting
-  - [ ] Kotlin
-  - [ ] Java
-- [ ] Get by User
+- Get Passport with Pagination and Sorting
   - [x] Kotlin
   - [ ] Java
-- [ ] Update
+- Get by User
+  - [x] Kotlin
+  - [ ] Java
+- Update
     - [ ] Kotlin
     - [ ] Java
-- [ ] Delete
+- Delete
     - [ ] Kotlin
     - [ ] Java
 

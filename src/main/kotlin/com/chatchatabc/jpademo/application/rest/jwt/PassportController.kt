@@ -8,6 +8,8 @@ import com.chatchatabc.jpademo.domain.repository.PassportRepository
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.PassportService
 import org.modelmapper.ModelMapper
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -20,6 +22,18 @@ class PassportController(
     private val userRepository: UserRepository
 ) {
     private val mapper = ModelMapper()
+
+    @GetMapping("/get")
+    fun getPassports(
+        pageable: Pageable
+    ): ResponseEntity<Page<Passport>> {
+        return try {
+            val passports = passportRepository.findAll(pageable)
+            ResponseEntity.ok(passports)
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().build()
+        }
+    }
 
     /**
      * Get Passport by User
