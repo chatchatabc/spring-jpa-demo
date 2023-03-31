@@ -91,16 +91,19 @@
 ### Post (Many-to-One)
 
 - Create
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
-- Read
-    - [ ] Kotlin
+- Get with Pagination, Sorting, and date range
+    - [x] Kotlin
+    - [ ] Java
+- Get with Pagination, Sorting, date range, and User ID
+    - [?] Kotlin
     - [ ] Java
 - Update
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
 - Delete
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
 
 ### Roles (Many-to-Many)

@@ -1,0 +1,39 @@
+### Get Posts
+GET {{address}}/api/post/get
+Authorization: Bearer {{token}}
+
+### Get Posts w/ User ID
+GET {{address}}/api/post/get?userId=035c02a9-7432-4199-8e98-55142410f215
+Authorization: Bearer {{token}}
+
+### Get Posts by date range
+GET {{address}}/api/post/get?dateFrom=2019-01-01&dateTo=2023-04-01
+Authorization: Bearer {{token}}
+
+### Get Posts by date range expected no data
+GET {{address}}/api/post/get?dateFrom=2019-01-01&dateTo=2022-04-01
+Authorization: Bearer {{token}}
+
+### Create Post
+POST {{address}}/api/post/create
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Post Title",
+    "content": "Post Content"
+}
+
+### Update Post
+PUT {{address}}/api/post/update/652fd4b1-abbc-4fd3-b00b-376ec8c62499
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Post Title2",
+    "content": "Post Content2"
+}
+
+### Delete Post
+DELETE {{address}}/api/post/delete/652fd4b1-abbc-4fd3-b00b-376ec8c62499
+Authorization: Bearer {{token}}
