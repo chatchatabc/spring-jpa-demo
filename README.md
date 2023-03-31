@@ -148,7 +148,7 @@
     - [x] Kotlin
     - [ ] Java
 - Update
-    - [ ] Kotlin
+    - [x] Kotlin
     - [ ] Java
 - Delete
     - [x] Kotlin
