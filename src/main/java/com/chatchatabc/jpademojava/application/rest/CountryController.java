@@ -107,7 +107,8 @@ public class CountryController {
             @RequestBody CountryUpdateRequest request
     ) {
         try {
-            Country country = countryService.update(countryId, request);
+            Country newCountryInfo = mapper.map(request, Country.class);
+            Country country = countryService.update(countryId, newCountryInfo);
             return ResponseEntity.ok(new CountryUpdateResponse(country, null));
         } catch (Exception e) {
             e.printStackTrace();

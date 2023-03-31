@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.Country;
 import com.chatchatabc.jpademojava.domain.model.User;
 import org.springframework.stereotype.Service;
@@ -20,10 +19,10 @@ public interface CountryService {
      * Update country
      *
      * @param countryId
-     * @param request
+     * @param newCountryInfo
      * @return
      */
-    Country update(String countryId, CountryUpdateRequest request) throws Exception;
+    Country update(String countryId, Country newCountryInfo) throws Exception;
 
     /**
      * Assign user to country

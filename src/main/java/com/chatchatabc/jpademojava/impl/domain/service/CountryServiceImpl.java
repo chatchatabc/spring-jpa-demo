@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.Country;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
@@ -33,19 +32,19 @@ public class CountryServiceImpl implements CountryService {
      * Update country
      *
      * @param countryId
-     * @param request
+     * @param newCountryInfo
      * @return
      */
     @Override
-    public Country update(String countryId, CountryUpdateRequest request) throws Exception {
+    public Country update(String countryId, Country newCountryInfo) throws Exception {
         Optional<Country> queriedCountry = countryRepository.findById(countryId);
         if (queriedCountry.isEmpty()) {
             throw new Exception("Country not found");
         }
 
         // Update Fields
-        if (request.getName() != null) {
-            queriedCountry.get().setName(request.getName());
+        if (newCountryInfo.getName() != null) {
+            queriedCountry.get().setName(newCountryInfo.getName());
         }
 
         return countryRepository.save(queriedCountry.get());

@@ -12,7 +12,7 @@ GET {{address}}/api/country/get
 Authorization: Bearer {{token}}
 
 ### Country Update
-PUT {{address}}/api/country/update/848e0c27-9161-4a3d-b9c8-dad1e8400b45
+PUT {{address}}/api/country/update/088370b1-37f3-4b67-b561-0e9e1385bd24
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
