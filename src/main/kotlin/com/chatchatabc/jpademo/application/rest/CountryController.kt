@@ -84,7 +84,8 @@ class CountryController(
         @RequestBody request: CountryUpdateRequest
     ): ResponseEntity<CountryUpdateResponse> {
         return try {
-            val country = countryService.update(countryId, request)
+            val newCountryInfo = mapper.map(request, Country::class.java)
+            val country = countryService.update(countryId, newCountryInfo)
             ResponseEntity.ok(CountryUpdateResponse(country, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest()

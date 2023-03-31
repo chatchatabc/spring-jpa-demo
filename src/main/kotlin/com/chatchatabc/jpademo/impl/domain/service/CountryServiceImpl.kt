@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
-import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.CountryRepository
@@ -24,7 +23,7 @@ class CountryServiceImpl (
     /**
      * Update Country
      */
-    override fun update(countryId: String, request: CountryUpdateRequest): Country {
+    override fun update(countryId: String, newCountryInfo: Country): Country {
         val queriedCountry = countryRepository.findById(countryId)
         if (queriedCountry.isEmpty) {
             throw Exception("Country not found")
@@ -32,7 +31,7 @@ class CountryServiceImpl (
 
         // Update fields
         queriedCountry.get().apply {
-            name = request.name ?: name
+            name = newCountryInfo.name ?: name
         }
         return countryRepository.save(queriedCountry.get())
     }

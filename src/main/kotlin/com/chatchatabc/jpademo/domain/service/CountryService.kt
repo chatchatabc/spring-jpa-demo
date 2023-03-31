@@ -1,6 +1,5 @@
 package com.chatchatabc.jpademo.domain.service
 
-import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.model.User
 import org.springframework.stereotype.Service
@@ -15,7 +14,7 @@ interface CountryService {
     /**
      * Update Country
      */
-    fun update(countryId: String, request: CountryUpdateRequest): Country
+    fun update(countryId: String, newCountryInfo: Country): Country
 
     /**
      * Assign Country to User
