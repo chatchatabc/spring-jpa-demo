@@ -140,19 +140,19 @@
 
 - Create
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Get Passport with Pagination and Sorting
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Get by User
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Update
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Delete
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 
 ### Others
 
