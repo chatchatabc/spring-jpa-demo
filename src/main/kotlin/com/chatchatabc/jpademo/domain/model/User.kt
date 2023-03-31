@@ -1,5 +1,6 @@
 package com.chatchatabc.jpademo.domain.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import lombok.Data
@@ -38,6 +39,10 @@ open class User : UserDetails {
     @OneToOne
     @JoinColumn(name = "passport_id")
     open var passport: Passport? = null
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    open var posts: MutableList<Post> = mutableListOf()
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         // return empty list
