@@ -110,10 +110,10 @@
 
 - Admin (first registered user)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - User (succeeding registered users)
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 
 ### Country (One-to-Many)
 
