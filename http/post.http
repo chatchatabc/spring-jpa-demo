@@ -7,7 +7,7 @@ GET {{address}}/api/post/get?userId=035c02a9-7432-4199-8e98-55142410f215
 Authorization: Bearer {{token}}
 
 ### Get Posts by date range
-GET {{address}}/api/post/get?dateFrom=2019-01-01&dateTo=2023-04-01
+GET {{address}}/api/post/get?dateFrom=2019-01-01&dateTo=2023-05-01
 Authorization: Bearer {{token}}
 
 ### Get Posts by date range expected no data
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Update Post
-PUT {{address}}/api/post/update/652fd4b1-abbc-4fd3-b00b-376ec8c62499
+PUT {{address}}/api/post/update/fd5fb53a-67ce-4d8d-b18a-2bf41dd10128
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -35,5 +35,5 @@ Content-Type: application/json
 }
 
 ### Delete Post
-DELETE {{address}}/api/post/delete/652fd4b1-abbc-4fd3-b00b-376ec8c62499
+DELETE {{address}}/api/post/delete/fd5fb53a-67ce-4d8d-b18a-2bf41dd10128
 Authorization: Bearer {{token}}

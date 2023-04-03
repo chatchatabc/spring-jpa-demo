@@ -69,11 +69,11 @@ class PostController(
                 }
             }
             // TODO: Can be improved SIGNIFICANTLY
-            var queriedUser: Optional<User>? = null
+            var queriedUser: Optional<User> = Optional.empty()
             if (userId != null) {
                 queriedUser = userRepository.findById(userId)
             }
-            val posts: Page<Post> = if (queriedUser?.isPresent == true) {
+            val posts: Page<Post> = if (queriedUser.isPresent) {
                 postRepository.findAllBetweenDateRangeByUser(start, end, queriedUser.get(), pageable)
             } else {
                 postRepository.findAllBetweenDateRange(start, end, pageable)

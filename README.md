@@ -92,19 +92,19 @@
 
 - Create
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Get with Pagination, Sorting, and date range
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Get with Pagination, Sorting, date range, and User ID
     - [?] Kotlin
-    - [ ] Java
+    - [?] Java
 - Update
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 - Delete
     - [x] Kotlin
-    - [ ] Java
+    - [x] Java
 
 ### Roles (Many-to-Many)
 
