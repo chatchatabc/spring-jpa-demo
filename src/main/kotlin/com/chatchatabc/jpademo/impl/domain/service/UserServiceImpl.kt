@@ -1,6 +1,8 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
+import com.chatchatabc.jpademo.domain.model.ROLE_NAMES
 import com.chatchatabc.jpademo.domain.model.User
+import com.chatchatabc.jpademo.domain.repository.RoleRepository
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
 import org.modelmapper.ModelMapper
@@ -14,6 +16,7 @@ import java.util.*
 class UserServiceImpl(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
+    private val roleRepository: RoleRepository
 ) : UserService {
     private val mapper = ModelMapper()
 
@@ -24,6 +27,20 @@ class UserServiceImpl(
         // Encrypt password
         val newUser = mapper.map(user, User::class.java)
         newUser.password = passwordEncoder.encode(user.password)
+
+        // TODO: This can be moved to a separate service
+        // Assign role to user
+        val count = userRepository.count()
+        // Admin if first registered
+        if (count == 0L) {
+            val adminRole = roleRepository.findRoleByName(ROLE_NAMES.ROLE_ADMIN.toString())
+            newUser.roles.add(adminRole.get())
+        } else {
+            // User if not first registered
+            val userRole = roleRepository.findRoleByName(ROLE_NAMES.ROLE_USER.toString())
+            newUser.roles.add(userRole.get())
+        }
+
         return userRepository.save(newUser)
     }
 
