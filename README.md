@@ -108,11 +108,11 @@
 
 ### Roles (Many-to-Many)
 
-- Admin
-    - [ ] Kotlin
+- Admin (first registered user)
+    - [x] Kotlin
     - [ ] Java
-- User
-    - [ ] Kotlin
+- User (succeeding registered users)
+    - [x] Kotlin
     - [ ] Java
 
 ### Country (One-to-Many)
