@@ -1,8 +1,12 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
+import com.chatchatabc.jpademojava.domain.enums.ROLE_NAMES;
+import com.chatchatabc.jpademojava.domain.model.Role;
 import com.chatchatabc.jpademojava.domain.model.User;
+import com.chatchatabc.jpademojava.domain.repository.RoleRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,14 +15,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RoleRepository roleRepository;
+
+    private final ModelMapper modelMapper = new ModelMapper();
 
 
     /**
@@ -30,8 +38,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public User register(User user) {
         // Encrypt password
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User newUser = modelMapper.map(user, User.class);
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+
+        // TODO: This can be moved to a separate service
+        // Assign Role to user
+        long count = userRepository.count();
+        // Admin if first registered
+        if (count == 0) {
+            Optional<Role> adminRole = roleRepository.findRoleByName(ROLE_NAMES.ROLE_ADMIN.toString());
+            if (adminRole.isEmpty()) {
+                throw new RuntimeException("Admin role not found");
+            }
+            newUser.setRoles(Set.of(adminRole.get()));
+        } else {
+            Optional<Role> userRole = roleRepository.findRoleByName(ROLE_NAMES.ROLE_USER.toString());
+            if (userRole.isEmpty()) {
+                throw new RuntimeException("User role not found");
+            }
+            newUser.setRoles(Set.of(userRole.get()));
+        }
+        return userRepository.save(newUser);
     }
 
     /**
