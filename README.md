@@ -33,11 +33,28 @@ robust and scalable applications with ease.
 
 ## Summary of the Project
 
-This demo is purely backend. A `Slidev` presentation is available and contains more information about `JPA`. and has the
+This demo is purely backend. A `Slidev` presentation is available and contains more information about `JPA`.
+
+### Diagrams
+
+#### Entity Relationship Diagram (ERD)
+
+![JPA Demo ERD](./docs/erd-jpa-demo.png)
+
+The image above is the Entity Relationship Diagram (ERD) of this project. There are a total of `6 tables` and they are
+the following:
+- `users` - contains the user's information
+- `posts` - contains the posts of the users, a user can have many posts
+- `countries` - contains the countries of the users, a country can have many users
+- `roles` - contains the roles of the project
+- `user_roles` - contains the linked roles of the user, a user can have many roles
+- `passports` - contains the passport information of the user, a user can have one passport
+
+### Features
 
 The following features are implemented for this demo:
 
-### User
+#### User
 
 - Registration (`/api/auth/register`)
 - Login (`/api/auth/register`)
@@ -46,7 +63,7 @@ The following features are implemented for this demo:
 - Update Profile TRANSACTIONAL (`/api/user/profile/update`)
 - Change Password TRANSACTIONAL (`/api/user/profile/change-password`)
 
-### Post (Many-to-One)
+#### Post (Many-to-One)
 
 - Create (`/api/post/create`)
 - Get with Pagination, Sorting, and date range (`/api/post/get`)
@@ -54,12 +71,12 @@ The following features are implemented for this demo:
 - Update (`/api/post/update/{postId}`)
 - Delete (`/api/post/delete/{postId}`)
 
-### Roles (Many-to-Many)
+#### Roles (Many-to-Many)
 
 - Admin (first registered user)
 - User (succeeding registered users)
 
-### Country (One-to-Many)
+#### Country (One-to-Many)
 
 - Get with Pagination and Sorting (`/api/country/get`)
 - Get all users assigned to country with Pagination and Sorting (`/api/country/get/{countryId}`)
@@ -69,7 +86,7 @@ The following features are implemented for this demo:
 - Remove Assigned Country to User (`/api/country/unassign`)
 - Delete if not in use (`/api/country/delete`)
 
-### Passport (One-to-One)
+#### Passport (One-to-One)
 
 - Create (`/api/passport/create/{userId}`)
 - Get Passport with Pagination and Sorting (`/api/passport/get`)
