@@ -25,32 +25,75 @@ transition: slide-left
 css: unocss
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+# Spring Boot JPA Demo Presentation
 
 ---
-transition: fade-out
+layout: image-right
+image: https://scontent.fceb2-2.fna.fbcdn.net/v/t39.30808-6/316814166_10219185206575397_7964845082752698762_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEzCkbarCIidyK--jq_SvNPJU-Keys_cEIlT4p7Kz9wQhOiiE0QFC412QqNTjD5zz0&_nc_ohc=AxeDey5hOqUAX_HyCX2&_nc_ht=scontent.fceb2-2.fna&oh=00_AfDN3QAnjZs_WSwcNGT2PW3ToI0s5IwCBej2-RG7cdaKZg&oe=64325FFA
+---
+
+<div class="text-left">
+  <h1> Hello! </h1>
+  <h2> I am <span class="text-blue-500">Raphael Dalangin</span> </h2>
+  <p> and we will be discussing about the <span class="text-yellow-500">Spring Boot Java Persistence API</span>. </p>
+</div>
+
+---
+class: 'text-center'
+---
+
+TODO: Quote about Spring Boot JPA
+
+---
+
+TODO: Definition: 5s about JPA
+
+---
+
+TODO: Use cases of JPA
+
+---
+
+TODO: Best Practices
+
+---
+
+TODO: Code examples with DDD
+
+---
+
+TODO: Usual process flow
+
+---
+
+TODO: Key concepts
+
+---
+
+TODO: Demo features
+
+---
+
+TODO: Present Demo
+
+- docker setup
+- db setup
+- spring setup
+- tech stack
+- show entity relationship diagram
+
+---
+
+TODO: Question and Answer
+
+---
+
+TODO: References
+
+---
+
+TODO: Thank you!
+
 ---
 
 # What is Slidev?
@@ -101,24 +144,28 @@ Hover on the bottom-left corner to see the navigation's controls panel, [learn m
 
 ### Keyboard Shortcuts
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+|                                                    |                             |
+| -------------------------------------------------- | --------------------------- |
+| <kbd>right</kbd> / <kbd>space</kbd>                | next animation or slide     |
+| <kbd>left</kbd> / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
+| <kbd>up</kbd>                                      | previous slide              |
+| <kbd>down</kbd>                                    | next slide                  |
 
 <!-- https://sli.dev/guide/animations.html#click-animations -->
+
 <img
   v-click
   class="absolute -bottom-9 -left-7 w-80 opacity-50"
   src="https://sli.dev/assets/arrow-bottom-left.svg"
 />
+
 <p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
 
 ---
 layout: image-right
 image: https://source.unsplash.com/collection/94734566/1920x1080
+---
+
 ---
 
 # Code
@@ -127,16 +174,16 @@ Use code snippets and get the highlighting directly![^1]
 
 ```ts {all|2|1-6|9|all}
 interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
+  id: number;
+  firstName: string;
+  lastName: string;
+  role: string;
 }
 
 function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = { ...user, ...update }
-  saveUser(id, newUser)
+  const user = getUser(id);
+  const newUser = { ...user, ...update };
+  saveUser(id, newUser);
 }
 ```
 
@@ -198,10 +245,9 @@ Also, HTML elements are valid:
 </div>
 -->
 
+---
 
----
-class: px-20
----
+## class: px-20
 
 # Themes
 
@@ -231,20 +277,15 @@ Read more about [How to use a theme](https://sli.dev/themes/use.html) and
 check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
 
 ---
-preload: false
----
+
+## preload: false
 
 # Animations
 
 Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
 
 ```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
+<div v-motion :initial="{ x: -80 }" :enter="{ x: 0 }">Slidev</div>
 ```
 
 <div class="w-60 relative mt-6">
@@ -317,6 +358,7 @@ LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
 Inline $\sqrt{3x-1}+(1+x)^2$
 
 Block
+
 $$
 \begin{array}{c}
 
@@ -395,13 +437,17 @@ database "MySql" {
 [Learn More](https://sli.dev/guide/syntax.html#diagrams)
 
 ---
+
 src: ./pages/multiple-entries.md
 hide: false
+
 ---
 
 ---
+
 layout: center
 class: text-center
+
 ---
 
 # Learn More
