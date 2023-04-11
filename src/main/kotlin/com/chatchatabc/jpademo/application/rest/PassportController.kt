@@ -1,4 +1,4 @@
-package com.chatchatabc.jpademo.application.rest.jwt
+package com.chatchatabc.jpademo.application.rest
 
 import com.chatchatabc.jpademo.application.dto.ErrorContent
 import com.chatchatabc.jpademo.application.dto.passport.*
