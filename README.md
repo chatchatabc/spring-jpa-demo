@@ -199,4 +199,5 @@ docker-compose up
 - [PostgreSQL](https://hub.docker.com/_/postgres)
 - [Use Spring Data CrudRepository for database access](https://kotlinlang.org/docs/jvm-spring-boot-using-crudrepository.html)
 - [Working with Kotlin and JPA](https://www.baeldung.com/kotlin/jpa)
-- Hibernate @CreationTimestamp and @UpdateTimestamp: https://www.baeldung.com/hibernate-creationtimestamp-updatetimestamp
+- [Hibernate @CreationTimestamp and @UpdateTimestamp](https://www.baeldung.com/hibernate-creationtimestamp-updatetimestamp)
+- [EASILY IMPLEMENT UUIDS AS PRIMARY KEYS IN SPRING BOOT 3](https://www.danvega.dev/blog/2023/01/27/jakarta-ee-10-uuid/)
