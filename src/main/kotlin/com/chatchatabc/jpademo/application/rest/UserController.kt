@@ -7,6 +7,7 @@ import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
 import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
+import org.modelmapper.ModelMapper
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
@@ -17,6 +18,8 @@ class UserController(
     private val userRepository: UserRepository,
     private val userService: UserService
 ) {
+    private val mapper = ModelMapper()
+
     /**
      * User Profile
      */
@@ -58,12 +61,13 @@ class UserController(
      */
     @PutMapping("/profile/update")
     fun updateProfile(
-        @RequestBody user: UserProfileUpdateRequest
+        @RequestBody request: UserProfileUpdateRequest
     ): ResponseEntity<UserProfileResponse> {
         return try {
             // Get id from security context
             val principal = SecurityContextHolder.getContext().authentication.principal as User
-            val user = userService.update(principal.id, user)
+            val newUserInfo = mapper.map(request, User::class.java)
+            val user = userService.update(principal.id, newUserInfo)
             ResponseEntity.ok(UserProfileResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest().body(UserProfileResponse(null, ErrorContent("User Profile Error", e.message)))
@@ -80,7 +84,7 @@ class UserController(
         return try {
             // Get id from security context
             val principal = SecurityContextHolder.getContext().authentication.principal as User
-            val user = userService.updatePassword(principal.id, request)
+            val user = userService.updatePassword(principal.id, request.oldPassword, request.newPassword)
             ResponseEntity.ok(UserProfileResponse(user, null))
         } catch (e: Exception) {
             ResponseEntity.badRequest()

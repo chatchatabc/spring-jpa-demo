@@ -1,8 +1,5 @@
 package com.chatchatabc.jpademo.domain.service
 
-import com.chatchatabc.jpademo.application.dto.user.UserPasswordUpdateRequest
-import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
-import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
 import com.chatchatabc.jpademo.domain.model.User
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
@@ -14,17 +11,17 @@ interface UserService : UserDetailsService {
     /**
      * User Register
      */
-    fun register(user: UserRegisterRequest): User
+    fun register(user: User): User
 
     /**
      * Update User Profile
      */
     @Transactional
-    fun update(userId: String, user: UserProfileUpdateRequest): User
+    fun update(userId: String, newUserInfo: User): User
 
     /**
      * Update User Password
      */
     @Transactional
-    fun updatePassword(userId: String, request: UserPasswordUpdateRequest): User
+    fun updatePassword(userId: String, oldPassword: String, newPassword: String): User
 }

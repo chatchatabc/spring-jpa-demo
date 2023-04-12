@@ -5,10 +5,11 @@ import com.chatchatabc.jpademojava.application.dto.user.UserLoginRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserLoginResponse;
 import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.application.dto.user.UserRegisterResponse;
+import com.chatchatabc.jpademojava.application.rest.jwt.JwtService;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
-import com.chatchatabc.jpademojava.domain.service.JwtService;
 import com.chatchatabc.jpademojava.domain.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,8 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtService jwtService;
+
+    private final ModelMapper modelMapper = new ModelMapper();
 
     /**
      * User Login
@@ -81,7 +84,8 @@ public class AuthController {
             @RequestBody UserRegisterRequest request
     ) {
         try {
-            User newUser = userService.register(request);
+            User user = modelMapper.map(request, User.class);
+            User newUser = userService.register(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(new UserRegisterResponse(newUser, null));
         } catch (Exception e) {
             // TODO: Catch appropriate exception message

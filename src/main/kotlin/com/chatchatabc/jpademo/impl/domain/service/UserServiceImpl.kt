@@ -1,9 +1,8 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
-import com.chatchatabc.jpademo.application.dto.user.UserPasswordUpdateRequest
-import com.chatchatabc.jpademo.application.dto.user.UserProfileUpdateRequest
-import com.chatchatabc.jpademo.application.dto.user.UserRegisterRequest
+import com.chatchatabc.jpademo.domain.model.ROLE_NAMES
 import com.chatchatabc.jpademo.domain.model.User
+import com.chatchatabc.jpademo.domain.repository.RoleRepository
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.UserService
 import org.modelmapper.ModelMapper
@@ -17,16 +16,31 @@ import java.util.*
 class UserServiceImpl(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
+    private val roleRepository: RoleRepository
 ) : UserService {
     private val mapper = ModelMapper()
 
     /**
      * User Register
      */
-    override fun register(user: UserRegisterRequest): User {
+    override fun register(user: User): User {
         // Encrypt password
         val newUser = mapper.map(user, User::class.java)
         newUser.password = passwordEncoder.encode(user.password)
+
+        // TODO: This can be moved to a separate service
+        // Assign role to user
+        val count = userRepository.count()
+        // Admin if first registered
+        if (count == 0L) {
+            val adminRole = roleRepository.findRoleByName(ROLE_NAMES.ROLE_ADMIN.toString())
+            newUser.roles.add(adminRole.get())
+        } else {
+            // User if not first registered
+            val userRole = roleRepository.findRoleByName(ROLE_NAMES.ROLE_USER.toString())
+            newUser.roles.add(userRole.get())
+        }
+
         return userRepository.save(newUser)
     }
 
@@ -34,7 +48,7 @@ class UserServiceImpl(
      * Update User Profile
      */
     @Transactional
-    override fun update(userId: String, user: UserProfileUpdateRequest): User {
+    override fun update(userId: String, newUserInfo: User): User {
         val queriedUser = userRepository.findById(userId)
         if (queriedUser.isEmpty) {
             throw Exception("User not found")
@@ -43,9 +57,9 @@ class UserServiceImpl(
         // Apply update
         queriedUser.get().apply {
             // Update email if not null
-            email = user.email ?: email
+            email = newUserInfo.email ?: email
             // Update username if not null
-            username = user.username ?: username
+            username = newUserInfo.username ?: username
         }
         return userRepository.save(queriedUser.get())
 
@@ -55,18 +69,18 @@ class UserServiceImpl(
      * Update User Password
      */
     @Transactional
-    override fun updatePassword(userId: String, request: UserPasswordUpdateRequest): User {
+    override fun updatePassword(userId: String, oldPassword: String, newPassword: String): User {
         val user = userRepository.findById(userId)
         if (user.isEmpty) {
             throw Exception("User not found")
         }
         // Compare old password with current password
-        if (!passwordEncoder.matches(request.oldPassword, user.get().password)) {
+        if (!passwordEncoder.matches(oldPassword, user.get().password)) {
             throw Exception("Old password is incorrect")
         }
         // Update password
         user.get().apply {
-            password = passwordEncoder.encode(request.newPassword)
+            password = passwordEncoder.encode(newPassword)
         }
         return userRepository.save(user.get())
     }

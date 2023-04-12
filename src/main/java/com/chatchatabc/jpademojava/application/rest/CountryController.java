@@ -1,15 +1,14 @@
 package com.chatchatabc.jpademojava.application.rest;
 
+import com.chatchatabc.jpademo.application.dto.country.CountryUnassignRequest;
 import com.chatchatabc.jpademojava.application.dto.ErrorContent;
-import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
-import com.chatchatabc.jpademojava.application.dto.country.CountryCreateResponse;
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateResponse;
+import com.chatchatabc.jpademojava.application.dto.country.*;
+import com.chatchatabc.jpademojava.domain.model.Country;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.CountryService;
-import com.chatchatabc.jpademojava.domain.model.Country;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +27,8 @@ public class CountryController {
     private CountryRepository countryRepository;
     @Autowired
     private UserRepository userRepository;
+
+    private final ModelMapper mapper = new ModelMapper();
 
     /**
      * Get countries
@@ -83,7 +84,8 @@ public class CountryController {
             @RequestBody CountryCreateRequest request
     ) {
         try {
-            Country country = countryService.create(request);
+            Country newCountry = mapper.map(request, Country.class);
+            Country country = countryService.create(newCountry);
             return ResponseEntity.ok(new CountryCreateResponse(country, null));
         } catch (Exception e) {
             // TODO: Improve error message
@@ -106,13 +108,68 @@ public class CountryController {
             @RequestBody CountryUpdateRequest request
     ) {
         try {
-            Country country = countryService.update(countryId, request);
+            Country newCountryInfo = mapper.map(request, Country.class);
+            Country country = countryService.update(countryId, newCountryInfo);
             return ResponseEntity.ok(new CountryUpdateResponse(country, null));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     new CountryUpdateResponse(null, new ErrorContent("Update Country Error", e.getMessage()))
             );
+        }
+    }
+
+    /**
+     * Assign country to user
+     *
+     * @param request
+     * @return
+     */
+    @PutMapping("/assign")
+    public ResponseEntity<CountryAssignResponse> assignCountry(
+            @RequestBody CountryAssignRequest request
+    ) {
+        try {
+            User user = countryService.assign(request.getUserId(), request.getCountryId());
+            return ResponseEntity.ok(new CountryAssignResponse(user, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new CountryAssignResponse(null, new ErrorContent("Assign Country Error", e.getMessage()))
+            );
+        }
+    }
+
+    /**
+     * Unassign country from user
+     *
+     * @param request
+     * @return
+     */
+    @PutMapping("/unassign")
+    public ResponseEntity<CountryAssignResponse> unassignCountry(
+            @RequestBody CountryUnassignRequest request
+    ) {
+        try {
+            User user = countryService.unassign(request.getUserId());
+            return ResponseEntity.ok(new CountryAssignResponse(user, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new CountryAssignResponse(null, new ErrorContent("Unassign Country Error", e.getMessage()))
+            );
+        }
+    }
+
+    @DeleteMapping("/delete/{countryId}")
+    public ResponseEntity<String> deleteCountry(
+            @PathVariable String countryId
+    ) {
+        try {
+            countryRepository.deleteById(countryId);
+            return ResponseEntity.ok("Delete country success");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete country error");
         }
     }
 }

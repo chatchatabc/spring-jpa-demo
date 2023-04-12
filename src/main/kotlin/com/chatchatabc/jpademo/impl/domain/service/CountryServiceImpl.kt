@@ -1,15 +1,10 @@
 package com.chatchatabc.jpademo.impl.domain.service
 
-import com.chatchatabc.jpademo.application.dto.country.CountryAssignRequest
-import com.chatchatabc.jpademo.application.dto.country.CountryCreateRequest
-import com.chatchatabc.jpademo.application.dto.country.CountryUnassignRequest
-import com.chatchatabc.jpademo.application.dto.country.CountryUpdateRequest
 import com.chatchatabc.jpademo.domain.model.Country
 import com.chatchatabc.jpademo.domain.model.User
 import com.chatchatabc.jpademo.domain.repository.CountryRepository
 import com.chatchatabc.jpademo.domain.repository.UserRepository
 import com.chatchatabc.jpademo.domain.service.CountryService
-import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 
 @Service
@@ -17,20 +12,18 @@ class CountryServiceImpl (
     private val countryRepository: CountryRepository,
     private val userRepository: UserRepository
 ) : CountryService {
-    private val mapper = ModelMapper()
 
     /**
      * Create Country
      */
-    override fun create(country: CountryCreateRequest): Country {
-        val newCountry = mapper.map(country, Country::class.java)
-        return countryRepository.save(newCountry)
+    override fun create(country: Country): Country {
+        return countryRepository.save(country)
     }
 
     /**
      * Update Country
      */
-    override fun update(countryId: String, request: CountryUpdateRequest): Country {
+    override fun update(countryId: String, newCountryInfo: Country): Country {
         val queriedCountry = countryRepository.findById(countryId)
         if (queriedCountry.isEmpty) {
             throw Exception("Country not found")
@@ -38,7 +31,7 @@ class CountryServiceImpl (
 
         // Update fields
         queriedCountry.get().apply {
-            name = request.name ?: name
+            name = newCountryInfo.name ?: name
         }
         return countryRepository.save(queriedCountry.get())
     }
@@ -46,12 +39,12 @@ class CountryServiceImpl (
     /**
      * Assign Country to User
      */
-    override fun assign(request: CountryAssignRequest): User {
-        val user = userRepository.findById(request.userId)
+    override fun assign(userId: String, countryId: String): User {
+        val user = userRepository.findById(userId)
         if (user.isEmpty) {
             throw Exception("User not found")
         }
-        val country = countryRepository.findById(request.countryId)
+        val country = countryRepository.findById(countryId)
         if (country.isEmpty) {
             throw Exception("Country not found")
         }
@@ -67,8 +60,8 @@ class CountryServiceImpl (
     /**
      * Unassign Country from User
      */
-    override fun unassign(request: CountryUnassignRequest): User {
-        val user = userRepository.findById(request.userId)
+    override fun unassign(userId: String): User {
+        val user = userRepository.findById(userId)
         if (user.isEmpty) {
             throw Exception("User not found")
         }

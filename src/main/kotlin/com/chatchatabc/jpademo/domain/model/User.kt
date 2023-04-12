@@ -1,11 +1,17 @@
 package com.chatchatabc.jpademo.domain.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import lombok.Data
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.time.Instant
+
+enum class ROLE_NAMES {
+    ROLE_ADMIN,
+    ROLE_USER
+}
 
 @Data
 @Entity
@@ -35,9 +41,25 @@ open class User : UserDetails {
     @JoinColumn(name = "country_id")
     open var country: Country? = null
 
+    @OneToOne
+    @JoinColumn(name = "passport_id")
+    open var passport: Passport? = null
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    open var posts: MutableList<Post> = mutableListOf()
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "role_id")]
+    )
+    open var roles: MutableList<Role> = mutableListOf()
+
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        // return empty list
-        return mutableListOf()
+        return this.roles.stream().map { role -> role as GrantedAuthority }.toList().toMutableList()
     }
 
     override fun getPassword(): String {

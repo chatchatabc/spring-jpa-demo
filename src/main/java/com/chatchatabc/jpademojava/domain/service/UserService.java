@@ -1,8 +1,5 @@
 package com.chatchatabc.jpademojava.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.user.UserPasswordUpdateRequest;
-import com.chatchatabc.jpademojava.application.dto.user.UserProfileUpdateRequest;
-import com.chatchatabc.jpademojava.application.dto.user.UserRegisterRequest;
 import com.chatchatabc.jpademojava.domain.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -17,25 +14,26 @@ public interface UserService extends UserDetailsService {
      * @param user
      * @return
      */
-    User register(UserRegisterRequest user);
+    User register(User user);
 
     /**
      * Update user profile
      *
      * @param userId
-     * @param user
+     * @param newUserInfo
      * @return
      */
     @Transactional
-    User update(String userId, UserProfileUpdateRequest user) throws Exception;
+    User update(String userId, User newUserInfo) throws Exception;
 
     /**
      * Update user password
      *
      * @param userId
-     * @param request
+     * @param oldPassword
+     * @param newPassword
      * @return
      */
     @Transactional
-    User updatePassword(String userId, UserPasswordUpdateRequest request) throws Exception;
+    User updatePassword(String userId, String oldPassword, String newPassword) throws Exception;
 }

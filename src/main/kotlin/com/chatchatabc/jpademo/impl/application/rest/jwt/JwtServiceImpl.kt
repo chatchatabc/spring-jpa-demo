@@ -1,10 +1,10 @@
-package com.chatchatabc.jpademo.impl.domain.service
+package com.chatchatabc.jpademo.impl.application.rest.jwt
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
+import com.chatchatabc.jpademo.application.rest.jwt.JwtService
 import com.chatchatabc.jpademo.domain.model.User
-import com.chatchatabc.jpademo.domain.service.JwtService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*

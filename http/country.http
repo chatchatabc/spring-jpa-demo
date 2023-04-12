@@ -12,7 +12,7 @@ GET {{address}}/api/country/get
 Authorization: Bearer {{token}}
 
 ### Country Update
-PUT {{address}}/api/country/update/848e0c27-9161-4a3d-b9c8-dad1e8400b45
+PUT {{address}}/api/country/update/088370b1-37f3-4b67-b561-0e9e1385bd24
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -26,8 +26,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "countryId": "fda452b3-7e5d-4091-8e41-4a3c357c593f",
-  "userId": "31c1b25d-a1fb-4480-83dd-b64d5d131ea4"
+  "countryId": "088370b1-37f3-4b67-b561-0e9e1385bd24",
+  "userId": "474509b7-ea13-4f7f-ae89-9f69c02c2d50"
 }
 
 ### Country Unassign User
@@ -36,7 +36,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "userId": "f97ae493-dcb0-4dac-a43f-60548c96fa17"
+  "userId": "474509b7-ea13-4f7f-ae89-9f69c02c2d50"
 }
 
 ### Users By Country
@@ -44,5 +44,5 @@ GET {{address}}/api/country/get/fda452b3-7e5d-4091-8e41-4a3c357c593f
 Authorization: Bearer {{token}}
 
 ### Delete Country
-DELETE {{address}}/api/country/delete/fda452b3-7e5d-4091-8e41-4a3c357c593f
+DELETE {{address}}/api/country/delete/088370b1-37f3-4b67-b561-0e9e1385bd24
 Authorization: Bearer {{token}}

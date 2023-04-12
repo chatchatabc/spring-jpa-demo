@@ -1,11 +1,10 @@
 package com.chatchatabc.jpademojava.impl.domain.service;
 
-import com.chatchatabc.jpademojava.application.dto.country.CountryCreateRequest;
-import com.chatchatabc.jpademojava.application.dto.country.CountryUpdateRequest;
 import com.chatchatabc.jpademojava.domain.model.Country;
+import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.CountryRepository;
+import com.chatchatabc.jpademojava.domain.repository.UserRepository;
 import com.chatchatabc.jpademojava.domain.service.CountryService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,40 +14,80 @@ import java.util.Optional;
 public class CountryServiceImpl implements CountryService {
     @Autowired
     private CountryRepository countryRepository;
-
-    private final ModelMapper mapper = new ModelMapper();
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * Create country
      *
-     * @param request
+     * @param country
      * @return
      */
     @Override
-    public Country create(CountryCreateRequest request) {
-        Country newCountry = mapper.map(request, Country.class);
-        return countryRepository.save(newCountry);
+    public Country create(Country country) {
+        return countryRepository.save(country);
     }
 
     /**
      * Update country
      *
      * @param countryId
-     * @param request
+     * @param newCountryInfo
      * @return
      */
     @Override
-    public Country update(String countryId, CountryUpdateRequest request) throws Exception {
+    public Country update(String countryId, Country newCountryInfo) throws Exception {
         Optional<Country> queriedCountry = countryRepository.findById(countryId);
         if (queriedCountry.isEmpty()) {
             throw new Exception("Country not found");
         }
 
         // Update Fields
-        if (request.getName() != null) {
-            queriedCountry.get().setName(request.getName());
+        if (newCountryInfo.getName() != null) {
+            queriedCountry.get().setName(newCountryInfo.getName());
         }
 
         return countryRepository.save(queriedCountry.get());
+    }
+
+    /**
+     * Assign user to country
+     *
+     * @param userId
+     * @param countryId
+     * @return
+     */
+    @Override
+    public User assign(String userId, String countryId) throws Exception {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new Exception("User not found");
+        }
+        Optional<Country> country = countryRepository.findById(countryId);
+        if (country.isEmpty()) {
+            throw new Exception("Country not found");
+        }
+
+        // Apply Update
+        user.get().setCountry(country.get());
+
+        return userRepository.save(user.get());
+    }
+
+    /**
+     * Unassign user from country
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public User unassign(String userId) throws Exception {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new Exception("User not found");
+        }
+        user.get().setCountry(null);
+        return userRepository.save(user.get());
     }
 }

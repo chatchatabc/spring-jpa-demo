@@ -1,8 +1,8 @@
 package com.chatchatabc.jpademojava.infra.config.security.filter;
 
+import com.chatchatabc.jpademojava.application.rest.jwt.JwtService;
 import com.chatchatabc.jpademojava.domain.model.User;
 import com.chatchatabc.jpademojava.domain.repository.UserRepository;
-import com.chatchatabc.jpademojava.domain.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private UserRepository userRepository;
 
-    private Logger log = LoggerFactory.getLogger(JwtRequestFilter.class);
+    private final Logger log = LoggerFactory.getLogger(JwtRequestFilter.class);
 
     /**
      * Filter the request and validate the token

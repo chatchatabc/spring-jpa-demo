@@ -35,6 +35,9 @@ class SecurityConfig(
                 // Authenticated Access to Country Routes
                 it.requestMatchers("/api/country/**").authenticated()
 
+                // Authenticated Access to Passport Routes
+                it.requestMatchers("/api/passport/**").authenticated()
+
                 // Authenticated access to user routes
                 it.requestMatchers("/api/user/**").authenticated()
 

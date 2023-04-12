@@ -43,6 +43,9 @@ public class SecurityConfig {
                         // Authenticated access to user routes
                         .requestMatchers("/api/user/**").authenticated()
 
+                        // Authenticated access to passport routes
+                        .requestMatchers("/api/passport/**").authenticated()
+
                         // TODO: Add more security rules
                         .anyRequest().authenticated()
                 )
