@@ -153,3 +153,6 @@
 - [ ] Unit Testing
 
 ## References
+                          
+* Use Spring Data CrudRepository for database access: https://kotlinlang.org/docs/jvm-spring-boot-using-crudrepository.html
+* Working with Kotlin and JPA: https://www.baeldung.com/kotlin/jpa
