@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import jakarta.persistence.*
 import lombok.Data
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.time.Instant
@@ -30,10 +32,10 @@ open class User : UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private lateinit var password: String
 
-    @Column
+    @CreationTimestamp
     open lateinit var createdAt: Instant
 
-    @Column
+    @UpdateTimestamp
     open lateinit var updatedAt: Instant
 
     // Relationships
@@ -92,16 +94,5 @@ open class User : UserDetails {
 
     override fun isEnabled(): Boolean {
         return true
-    }
-
-    @PrePersist
-    fun prePersist() {
-        this.createdAt = Instant.now()
-        this.updatedAt = Instant.now()
-    }
-
-    @PreUpdate
-    fun preUpdate() {
-        this.updatedAt = Instant.now()
     }
 }
