@@ -3,6 +3,8 @@ package com.chatchatabc.jpademo.domain.model
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import lombok.Data
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
 
 @Data
@@ -16,25 +18,14 @@ open class Country {
     @Column(unique = true)
     open lateinit var name: String
 
-    @Column
+    @CreationTimestamp
     open lateinit var createdAt: Instant
 
-    @Column
+    @UpdateTimestamp
     open lateinit var updatedAt: Instant
 
     // Relationships
     @JsonIgnore
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     open var users: MutableList<User> = mutableListOf()
-
-    @PrePersist
-    fun prePersist() {
-        this.createdAt = Instant.now()
-        this.updatedAt = Instant.now()
-    }
-
-    @PreUpdate
-    fun preUpdate() {
-        this.updatedAt = Instant.now()
-    }
 }

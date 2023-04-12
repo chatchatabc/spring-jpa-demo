@@ -2,6 +2,8 @@ package com.chatchatabc.jpademo.domain.model
 
 import jakarta.persistence.*
 import lombok.Data
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
 
 @Data
@@ -18,25 +20,14 @@ open class Post {
     @Column
     open lateinit var content: String
 
-    @Column
+    @CreationTimestamp
     open lateinit var createdAt: Instant
 
-    @Column
+    @UpdateTimestamp
     open lateinit var updatedAt: Instant
 
     // Relationships
     @ManyToOne
     @JoinColumn(name = "user_id")
     open var user: User? = null
-
-    @PrePersist
-    fun prePersist() {
-        this.createdAt = Instant.now()
-        this.updatedAt = Instant.now()
-    }
-
-    @PreUpdate
-    fun preUpdate() {
-        this.updatedAt = Instant.now()
-    }
 }

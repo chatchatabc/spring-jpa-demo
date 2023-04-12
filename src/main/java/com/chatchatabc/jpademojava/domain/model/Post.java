@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 
@@ -25,25 +27,14 @@ public class Post {
     @Column
     private String content;
 
-    @Column
+    @CreationTimestamp
     private Instant createdAt;
 
-    @Column
+    @UpdateTimestamp
     private Instant updatedAt;
 
     // Relationships
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @PrePersist
-    protected void prePersist() {
-        this.createdAt = Instant.now();
-        this.updatedAt = Instant.now();
-    }
-
-    @PreUpdate
-    protected void preUpdate() {
-        this.updatedAt = Instant.now();
-    }
 }

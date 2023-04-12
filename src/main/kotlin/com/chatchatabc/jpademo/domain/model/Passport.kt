@@ -3,6 +3,8 @@ package com.chatchatabc.jpademo.domain.model
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import lombok.Data
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
 
 @Data
@@ -16,25 +18,14 @@ open class Passport {
     @Column(unique = true)
     open lateinit var number: String
 
-    @Column
+    @CreationTimestamp
     open lateinit var createdAt: Instant
 
-    @Column
+    @UpdateTimestamp
     open lateinit var updatedAt: Instant
 
     // Relationships
     @JsonIgnore
     @OneToOne(mappedBy = "passport", fetch = FetchType.LAZY)
     open lateinit var user: User
-
-    @PrePersist
-    fun prePersist() {
-        createdAt = Instant.now()
-        updatedAt = Instant.now()
-    }
-
-    @PreUpdate
-    fun preUpdate() {
-        updatedAt = Instant.now()
-    }
 }
